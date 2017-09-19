@@ -1,0 +1,3996 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.4-SNAPSHOT Documentation: Apache Kafka Connector</title>
+    <link rel="shortcut icon" href="/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/page/css/flink.css">
+    <link rel="stylesheet" href="/page/css/syntax.css">
+    <link rel="stylesheet" href="/page/css/codetabs.css">
+    <link rel="stylesheet" href="/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href=""><img class="bottom" alt="Apache Flink" src="/page/img/navbar-brand-logo.jpg"></a> v1.4-SNAPSHOT</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/index.html"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  <li><a href="/examples/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/run_example_quickstart.html">Monitoring Wikipedia Edits</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/examples.html">Batch Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-11" data-toggle="collapse"><i class="fa fa-book title appetizer" aria-hidden="true"></i> Cookbooks <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-11"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/cookbooks/join-streams.html">Join Streams</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/cookbooks/pattern-detection.html">Pattern Detection with CEP</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-15" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-15"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/java_api_quickstart.html">Sample Project in Java</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/scala_api_quickstart.html">Sample Project in Scala</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/linking_with_flink.html">Linking with Flink</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/scala_shell.html">Scala REPL</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/linking.html">Linking with Optional Modules</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-26" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-26"><ul>
+  <li><a href="/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-30" data-toggle="collapse" class="active">Streaming (DataStream API)</a><div class="collapse in" id="collapse-30"><ul>
+  <li><a href="/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-31" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-31"><ul>
+  <li><a href="/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="/dev/stream/state/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-42" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-42"><ul>
+  <li><a href="/dev/stream/operators/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-47" data-toggle="collapse" class="active">Connectors</a><div class="collapse in" id="collapse-47"><ul>
+  <li><a href="/dev/connectors/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/kafka.html" class="active">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-61" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-61"><ul>
+  <li><a href="/dev/batch/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-72" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-72"><ul>
+  <li><a href="/dev/table/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/streaming.html">Streaming Concepts</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-80" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-80"><ul>
+  <li><a href="/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-83" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-83"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-90" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-90"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/storm_compatibility.html">Storm Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-93" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-93"><ul>
+  <li><a href="/dev/libs/gelly/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-101" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-101"><ul>
+  <li><a href="/dev/libs/ml/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-120" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-120"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-121" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-121"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/jobmanager_high_availability.html">High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-132" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-132"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-156" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-156"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+  <li class="divider"></li>
+  <li><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.4/api/java"><i class="fa fa-external-link title" aria-hidden="true"></i> Javadocs</a></li>
+  <li><a href="http://flink.apache.org"><i class="fa fa-external-link title" aria-hidden="true"></i> Project Page</a></li>
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="/dev/datastream_api.html">Streaming (DataStream API)</a></li>
+  
+
+  
+  
+    <li><a href="/dev/connectors/index.html">Connectors</a></li>
+  
+
+  
+  
+    <li class="active">Kafka</li>
+  
+
+</ol>
+
+<h1>Apache Kafka Connector</h1>
+
+
+
+
+<ul id="markdown-toc">
+  <li><a href="#installing-apache-kafka" id="markdown-toc-installing-apache-kafka">Installing Apache Kafka</a></li>
+  <li><a href="#kafka-consumer" id="markdown-toc-kafka-consumer">Kafka Consumer</a>    <ul>
+      <li><a href="#the-deserializationschema" id="markdown-toc-the-deserializationschema">The <code>DeserializationSchema</code></a></li>
+      <li><a href="#kafka-consumers-start-position-configuration" id="markdown-toc-kafka-consumers-start-position-configuration">Kafka Consumers Start Position Configuration</a></li>
+      <li><a href="#kafka-consumers-and-fault-tolerance" id="markdown-toc-kafka-consumers-and-fault-tolerance">Kafka Consumers and Fault Tolerance</a></li>
+      <li><a href="#kafka-consumers-partition-discovery" id="markdown-toc-kafka-consumers-partition-discovery">Kafka Consumers Partition Discovery</a></li>
+      <li><a href="#kafka-consumers-offset-committing-behaviour-configuration" id="markdown-toc-kafka-consumers-offset-committing-behaviour-configuration">Kafka Consumers Offset Committing Behaviour Configuration</a></li>
+      <li><a href="#kafka-consumers-and-timestamp-extractionwatermark-emission" id="markdown-toc-kafka-consumers-and-timestamp-extractionwatermark-emission">Kafka Consumers and Timestamp Extraction/Watermark Emission</a></li>
+    </ul>
+  </li>
+  <li><a href="#kafka-producer" id="markdown-toc-kafka-producer">Kafka Producer</a>    <ul>
+      <li><a href="#kafka-producers-and-fault-tolerance" id="markdown-toc-kafka-producers-and-fault-tolerance">Kafka Producers and Fault Tolerance</a></li>
+    </ul>
+  </li>
+  <li><a href="#using-kafka-timestamps-and-flink-event-time-in-kafka-010" id="markdown-toc-using-kafka-timestamps-and-flink-event-time-in-kafka-010">Using Kafka timestamps and Flink event time in Kafka 0.10</a></li>
+  <li><a href="#kafka-connector-metrics" id="markdown-toc-kafka-connector-metrics">Kafka Connector metrics</a></li>
+  <li><a href="#enabling-kerberos-authentication-for-versions-09-and-above-only" id="markdown-toc-enabling-kerberos-authentication-for-versions-09-and-above-only">Enabling Kerberos Authentication (for versions 0.9+ and above only)</a></li>
+</ul>
+
+<p>This connector provides access to event streams served by <a href="https://kafka.apache.org/">Apache Kafka</a>.</p>
+
+<p>Flink provides special Kafka Connectors for reading and writing data from/to Kafka topics.
+The Flink Kafka Consumer integrates with Flink’s checkpointing mechanism to provide
+exactly-once processing semantics. To achieve that, Flink does not purely rely on Kafka’s consumer group
+offset tracking, but tracks and checkpoints these offsets internally as well.</p>
+
+<p>Please pick a package (maven artifact id) and class name for your use-case and environment.
+For most users, the <code>FlinkKafkaConsumer08</code> (part of <code>flink-connector-kafka</code>) is appropriate.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="text-left">Maven Dependency</th>
+      <th class="text-left">Supported since</th>
+      <th class="text-left">Consumer and <br />
+      Producer Class name</th>
+      <th class="text-left">Kafka version</th>
+      <th class="text-left">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>flink-connector-kafka-0.8_2.10</td>
+        <td>1.0.0</td>
+        <td>FlinkKafkaConsumer08<br />
+        FlinkKafkaProducer08</td>
+        <td>0.8.x</td>
+        <td>Uses the <a href="https://cwiki.apache.org/confluence/display/KAFKA/0.8.0+SimpleConsumer+Example">SimpleConsumer</a> API of Kafka internally. Offsets are committed to ZK by Flink.</td>
+    </tr>
+    <tr>
+        <td>flink-connector-kafka-0.9_2.10</td>
+        <td>1.0.0</td>
+        <td>FlinkKafkaConsumer09<br />
+        FlinkKafkaProducer09</td>
+        <td>0.9.x</td>
+        <td>Uses the new <a href="http://kafka.apache.org/documentation.html#newconsumerapi">Consumer API</a> Kafka.</td>
+    </tr>
+    <tr>
+        <td>flink-connector-kafka-0.10_2.10</td>
+        <td>1.2.0</td>
+        <td>FlinkKafkaConsumer010<br />
+        FlinkKafkaProducer010</td>
+        <td>0.10.x</td>
+        <td>This connector supports <a href="https://cwiki.apache.org/confluence/display/KAFKA/KIP-32+-+Add+timestamps+to+Kafka+message">Kafka messages with timestamps</a> both for producing and consuming.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then, import the connector in your maven project:</p>
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.flink<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>flink-connector-kafka-0.8_2.10<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.4-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
+
+<p>Note that the streaming connectors are currently not part of the binary distribution. See how to link with them for cluster execution <a href="/dev/linking.html">here</a>.</p>
+
+<h2 id="installing-apache-kafka">Installing Apache Kafka</h2>
+
+<ul>
+  <li>Follow the instructions from <a href="https://kafka.apache.org/documentation.html#quickstart">Kafka’s quickstart</a> to download the code and launch a server (launching a Zookeeper and a Kafka server is required every time before starting the application).</li>
+  <li>If the Kafka and Zookeeper servers are running on a remote machine, then the <code>advertised.host.name</code> setting in the <code>config/server.properties</code> file must be set to the machine’s IP address.</li>
+</ul>
+
+<h2 id="kafka-consumer">Kafka Consumer</h2>
+
+<p>Flink’s Kafka consumer is called <code>FlinkKafkaConsumer08</code> (or <code>09</code> for Kafka 0.9.0.x versions, etc.). It provides access to one or more Kafka topics.</p>
+
+<p>The constructor accepts the following arguments:</p>
+
+<ol>
+  <li>The topic name / list of topic names</li>
+  <li>A DeserializationSchema / KeyedDeserializationSchema for deserializing the data from Kafka</li>
+  <li>Properties for the Kafka consumer.
+  The following properties are required:
+    <ul>
+      <li>“bootstrap.servers” (comma separated list of Kafka brokers)</li>
+      <li>“zookeeper.connect” (comma separated list of Zookeeper servers) (<strong>only required for Kafka 0.8</strong>)</li>
+      <li>“group.id” the id of the consumer group</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Example:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Properties</span><span class="o">();</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;bootstrap.servers&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:9092&quot;</span><span class="o">);</span>
+<span class="c1">// only required for Kafka 0.8</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;zookeeper.connect&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:2181&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;group.id&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">);</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span>
+	<span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="k">new</span> <span class="n">FlinkKafkaConsumer08</span><span class="o">&lt;&gt;(</span><span class="s">&quot;topic&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="nf">SimpleStringSchema</span><span class="o">(),</span> <span class="n">properties</span><span class="o">));</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">properties</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;bootstrap.servers&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:9092&quot;</span><span class="o">);</span>
+<span class="c1">// only required for Kafka 0.8</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;zookeeper.connect&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:2181&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;group.id&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">);</span>
+<span class="n">stream</span> <span class="k">=</span> <span class="n">env</span>
+    <span class="o">.</span><span class="n">addSource</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlinkKafkaConsumer08</span><span class="o">[</span><span class="kt">String</span><span class="o">](</span><span class="s">&quot;topic&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="nc">SimpleStringSchema</span><span class="o">(),</span> <span class="n">properties</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">print</span></code></pre></div>
+
+  </div>
+</div>
+
+<h3 id="the-deserializationschema">The <code>DeserializationSchema</code></h3>
+
+<p>The Flink Kafka Consumer needs to know how to turn the binary data in Kafka into Java/Scala objects. The
+<code>DeserializationSchema</code> allows users to specify such a schema. The <code>T deserialize(byte[] message)</code>
+method gets called for each Kafka message, passing the value from Kafka.</p>
+
+<p>It is usually helpful to start from the <code>AbstractDeserializationSchema</code>, which takes care of describing the
+produced Java/Scala type to Flink’s type system. Users that implement a vanilla <code>DeserializationSchema</code> need
+to implement the <code>getProducedType(...)</code> method themselves.</p>
+
+<p>For accessing both the key and value of the Kafka message, the <code>KeyedDeserializationSchema</code> has
+the following deserialize method ` T deserialize(byte[] messageKey, byte[] message, String topic, int partition, long offset)`.</p>
+
+<p>For convenience, Flink provides the following schemas:</p>
+
+<ol>
+  <li>
+    <p><code>TypeInformationSerializationSchema</code> (and <code>TypeInformationKeyValueSerializationSchema</code>) which creates
+ a schema based on a Flink’s <code>TypeInformation</code>. This is useful if the data is both written and read by Flink.
+ This schema is a performant Flink-specific alternative to other generic serialization approaches.</p>
+  </li>
+  <li>
+    <p><code>JsonDeserializationSchema</code> (and <code>JSONKeyValueDeserializationSchema</code>) which turns the serialized JSON
+ into an ObjectNode object, from which fields can be accessed using objectNode.get(“field”).as(Int/String/…)().
+ The KeyValue objectNode contains a “key” and “value” field which contain all fields, as well as
+ an optional “metadata” field that exposes the offset/partition/topic for this message.</p>
+  </li>
+</ol>
+
+<p>When encountering a corrupted message that cannot be deserialized for any reason, there
+are two options - either throwing an exception from the <code>deserialize(...)</code> method
+which will cause the job to fail and be restarted, or returning <code>null</code> to allow
+the Flink Kafka consumer to silently skip the corrupted message. Note that
+due to the consumer’s fault tolerance (see below sections for more details),
+failing the job on the corrupted message will let the consumer attempt
+to deserialize the message again. Therefore, if deserialization still fails, the
+consumer will fall into a non-stop restart and fail loop on that corrupted
+message.</p>
+
+<h3 id="kafka-consumers-start-position-configuration">Kafka Consumers Start Position Configuration</h3>
+
+<p>The Flink Kafka Consumer allows configuring how the start position for Kafka
+partitions are determined.</p>
+
+<p>Example:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="n">FlinkKafkaConsumer08</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myConsumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlinkKafkaConsumer08</span><span class="o">&lt;&gt;(...);</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="na">setStartFromEarliest</span><span class="o">();</span>     <span class="c1">// start from the earliest record possible</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="na">setStartFromLatest</span><span class="o">();</span>       <span class="c1">// start from the latest record</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="na">setStartFromGroupOffsets</span><span class="o">();</span> <span class="c1">// the default behaviour</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">myConsumer</span><span class="o">);</span>
+<span class="o">...</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">env</span> <span class="k">=</span> <span class="nc">StreamExecutionEnvironment</span><span class="o">.</span><span class="n">getExecutionEnvironment</span><span class="o">()</span>
+
+<span class="k">val</span> <span class="n">myConsumer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FlinkKafkaConsumer08</span><span class="o">[</span><span class="kt">String</span><span class="o">](...)</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="n">setStartFromEarliest</span><span class="o">()</span>      <span class="c1">// start from the earliest record possible</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="n">setStartFromLatest</span><span class="o">()</span>        <span class="c1">// start from the latest record</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="n">setStartFromGroupOffsets</span><span class="o">()</span>  <span class="c1">// the default behaviour</span>
+
+<span class="k">val</span> <span class="n">stream</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">addSource</span><span class="o">(</span><span class="n">myConsumer</span><span class="o">)</span>
+<span class="o">...</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>All versions of the Flink Kafka Consumer have the above explicit configuration methods for start position.</p>
+
+<ul>
+  <li><code>setStartFromGroupOffsets</code> (default behaviour): Start reading partitions from
+ the consumer group’s (<code>group.id</code> setting in the consumer properties) committed
+ offsets in Kafka brokers (or Zookeeper for Kafka 0.8). If offsets could not be
+ found for a partition, the <code>auto.offset.reset</code> setting in the properties will be used.</li>
+  <li><code>setStartFromEarliest()</code> / <code>setStartFromLatest()</code>: Start from the earliest / latest
+ record. Under these modes, committed offsets in Kafka will be ignored and
+ not used as starting positions.</li>
+</ul>
+
+<p>You can also specify the exact offsets the consumer should start from for each partition:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">KafkaTopicPartition</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">specificStartOffsets</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="k">new</span> <span class="nf">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span> <span class="mi">23L</span><span class="o">);</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="k">new</span> <span class="nf">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <span class="mi">31L</span><span class="o">);</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="k">new</span> <span class="nf">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">43L</span><span class="o">);</span>
+
+<span class="n">myConsumer</span><span class="o">.</span><span class="na">setStartFromSpecificOffsets</span><span class="o">(</span><span class="n">specificStartOffsets</span><span class="o">);</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">specificStartOffsets</span> <span class="k">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="nc">HashMap</span><span class="o">[</span><span class="kt">KafkaTopicPartition</span>, <span class="kt">java.lang.Long</span><span class="o">]()</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="k">new</span> <span class="nc">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span> <span class="mi">23L</span><span class="o">)</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="k">new</span> <span class="nc">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <span class="mi">31L</span><span class="o">)</span>
+<span class="n">specificStartOffsets</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="k">new</span> <span class="nc">KafkaTopicPartition</span><span class="o">(</span><span class="s">&quot;myTopic&quot;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">43L</span><span class="o">)</span>
+
+<span class="n">myConsumer</span><span class="o">.</span><span class="n">setStartFromSpecificOffsets</span><span class="o">(</span><span class="n">specificStartOffsets</span><span class="o">)</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>The above example configures the consumer to start from the specified offsets for
+partitions 0, 1, and 2 of topic <code>myTopic</code>. The offset values should be the
+next record that the consumer should read for each partition. Note that
+if the consumer needs to read a partition which does not have a specified
+offset within the provided offsets map, it will fallback to the default
+group offsets behaviour (i.e. <code>setStartFromGroupOffsets()</code>) for that
+particular partition.</p>
+
+<p>Note that these start position configuration methods do not affect the start position when the job is
+automatically restored from a failure or manually restored using a savepoint.
+On restore, the start position of each Kafka partition is determined by the
+offsets stored in the savepoint or checkpoint
+(please see the next section for information about checkpointing to enable
+fault tolerance for the consumer).</p>
+
+<h3 id="kafka-consumers-and-fault-tolerance">Kafka Consumers and Fault Tolerance</h3>
+
+<p>With Flink’s checkpointing enabled, the Flink Kafka Consumer will consume records from a topic and periodically checkpoint all
+its Kafka offsets, together with the state of other operations, in a consistent manner. In case of a job failure, Flink will restore
+the streaming program to the state of the latest checkpoint and re-consume the records from Kafka, starting from the offsets that were
+stored in the checkpoint.</p>
+
+<p>The interval of drawing checkpoints therefore defines how much the program may have to go back at most, in case of a failure.</p>
+
+<p>To use fault tolerant Kafka Consumers, checkpointing of the topology needs to be enabled at the execution environment:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+<span class="n">env</span><span class="o">.</span><span class="na">enableCheckpointing</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span> <span class="c1">// checkpoint every 5000 msecs</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">env</span> <span class="k">=</span> <span class="nc">StreamExecutionEnvironment</span><span class="o">.</span><span class="n">getExecutionEnvironment</span><span class="o">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">enableCheckpointing</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span> <span class="c1">// checkpoint every 5000 msecs</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Also note that Flink can only restart the topology if enough processing slots are available to restart the topology.
+So if the topology fails due to loss of a TaskManager, there must still be enough slots available afterwards.
+Flink on YARN supports automatic restart of lost YARN containers.</p>
+
+<p>If checkpointing is not enabled, the Kafka consumer will periodically commit the offsets to Zookeeper.</p>
+
+<h3 id="kafka-consumers-partition-discovery">Kafka Consumers Partition Discovery</h3>
+
+<p>The Flink Kafka Consumer supports discovering dynamically created Kafka partitions, and consumes them with
+exactly-once guarantees. All partitions discovered after the initial retrieval of partition metadata (i.e., when the
+job starts running) will be consumed from the earliest possible offset.</p>
+
+<p>By default, partition discovery is disabled. To enable it, set a non-negative value
+for <code>flink.partition-discovery.interval-millis</code> in the provided properties config,
+representing the discovery interval in milliseconds.</p>
+
+<p><span class="label label-danger">Limitation</span> When the consumer is restored from a savepoint from Flink versions
+prior to Flink 1.3.x, partition discovery cannot be enabled on the restore run. If enabled, the restore would fail
+with an exception. In this case, in order to use partition discovery, please first take a savepoint in Flink 1.3.x and
+then restore again from that.</p>
+
+<h3 id="kafka-consumers-offset-committing-behaviour-configuration">Kafka Consumers Offset Committing Behaviour Configuration</h3>
+
+<p>The Flink Kafka Consumer allows configuring the behaviour of how offsets
+are committed back to Kafka brokers (or Zookeeper in 0.8). Note that the
+Flink Kafka Consumer does not rely on the committed offsets for fault
+tolerance guarantees. The committed offsets are only a means to expose
+the consumer’s progress for monitoring purposes.</p>
+
+<p>The way to configure offset commit behaviour is different, depending on
+whether or not checkpointing is enabled for the job.</p>
+
+<ul>
+  <li>
+    <p><em>Checkpointing disabled:</em> if checkpointing is disabled, the Flink Kafka
+ Consumer relies on the automatic periodic offset committing capability
+ of the internally used Kafka clients. Therefore, to disable or enable offset
+ committing, simply set the <code>enable.auto.commit</code> (or <code>auto.commit.enable</code>
+ for Kafka 0.8) / <code>auto.commit.interval.ms</code> keys to appropriate values
+ in the provided <code>Properties</code> configuration.</p>
+  </li>
+  <li>
+    <p><em>Checkpointing enabled:</em> if checkpointing is enabled, the Flink Kafka
+ Consumer will commit the offsets stored in the checkpointed states when
+ the checkpoints are completed. This ensures that the committed offsets
+ in Kafka brokers is consistent with the offsets in the checkpointed states.
+ Users can choose to disable or enable offset committing by calling the
+ <code>setCommitOffsetsOnCheckpoints(boolean)</code> method on the consumer (by default,
+ the behaviour is <code>true</code>).
+ Note that in this scenario, the automatic periodic offset committing
+ settings in <code>Properties</code> is completely ignored.</p>
+  </li>
+</ul>
+
+<h3 id="kafka-consumers-and-timestamp-extractionwatermark-emission">Kafka Consumers and Timestamp Extraction/Watermark Emission</h3>
+
+<p>In many scenarios, the timestamp of a record is embedded (explicitly or implicitly) in the record itself.
+In addition, the user may want to emit watermarks either periodically, or in an irregular fashion, e.g. based on
+special records in the Kafka stream that contain the current event-time watermark. For these cases, the Flink Kafka
+Consumer allows the specification of an <code>AssignerWithPeriodicWatermarks</code> or an <code>AssignerWithPunctuatedWatermarks</code>.</p>
+
+<p>You can specify your custom timestamp extractor/watermark emitter as described
+<a href="/apis/streaming/event_timestamps_watermarks.html">here</a>, or use one from the
+<a href="/apis/streaming/event_timestamp_extractors.html">predefined ones</a>. After doing so, you
+can pass it to your consumer in the following way:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Properties</span><span class="o">();</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;bootstrap.servers&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:9092&quot;</span><span class="o">);</span>
+<span class="c1">// only required for Kafka 0.8</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;zookeeper.connect&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:2181&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;group.id&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">);</span>
+
+<span class="n">FlinkKafkaConsumer08</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myConsumer</span> <span class="o">=</span>
+    <span class="k">new</span> <span class="n">FlinkKafkaConsumer08</span><span class="o">&lt;&gt;(</span><span class="s">&quot;topic&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="nf">SimpleStringSchema</span><span class="o">(),</span> <span class="n">properties</span><span class="o">);</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="na">assignTimestampsAndWatermarks</span><span class="o">(</span><span class="k">new</span> <span class="nf">CustomWatermarkEmitter</span><span class="o">());</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span>
+	<span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">myConsumer</span><span class="o">)</span>
+	<span class="o">.</span><span class="na">print</span><span class="o">();</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">properties</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;bootstrap.servers&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:9092&quot;</span><span class="o">);</span>
+<span class="c1">// only required for Kafka 0.8</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;zookeeper.connect&quot;</span><span class="o">,</span> <span class="s">&quot;localhost:2181&quot;</span><span class="o">);</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">&quot;group.id&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">);</span>
+
+<span class="k">val</span> <span class="n">myConsumer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FlinkKafkaConsumer08</span><span class="o">[</span><span class="kt">String</span><span class="o">](</span><span class="s">&quot;topic&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="nc">SimpleStringSchema</span><span class="o">(),</span> <span class="n">properties</span><span class="o">);</span>
+<span class="n">myConsumer</span><span class="o">.</span><span class="n">assignTimestampsAndWatermarks</span><span class="o">(</span><span class="k">new</span> <span class="nc">CustomWatermarkEmitter</span><span class="o">());</span>
+<span class="n">stream</span> <span class="k">=</span> <span class="n">env</span>
+    <span class="o">.</span><span class="n">addSource</span><span class="o">(</span><span class="n">myConsumer</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">print</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Internally, an instance of the assigner is executed per Kafka partition.
+When such an assigner is specified, for each record read from Kafka, the
+<code>extractTimestamp(T element, long previousElementTimestamp)</code> is called to assign a timestamp to the record and
+the <code>Watermark getCurrentWatermark()</code> (for periodic) or the
+<code>Watermark checkAndGetNextWatermark(T lastElement, long extractedTimestamp)</code> (for punctuated) is called to determine
+if a new watermark should be emitted and with which timestamp.</p>
+
+<h2 id="kafka-producer">Kafka Producer</h2>
+
+<p>Flink’s Kafka Producer is called <code>FlinkKafkaProducer08</code> (or <code>09</code> for Kafka 0.9.0.x versions, etc.).
+It allows writing a stream of records to one or more Kafka topics.</p>
+
+<p>Example:</p>
+
+<div class="codetabs">
+  <div data-lang="java, Kafka 0.8+">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">FlinkKafkaProducer08</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myProducer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlinkKafkaProducer08</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span>
+        <span class="s">&quot;localhost:9092&quot;</span><span class="o">,</span>            <span class="c1">// broker list</span>
+        <span class="s">&quot;my-topic&quot;</span><span class="o">,</span>                  <span class="c1">// target topic</span>
+        <span class="k">new</span> <span class="nf">SimpleStringSchema</span><span class="o">());</span>   <span class="c1">// serialization schema</span>
+
+<span class="c1">// the following is necessary for at-least-once delivery guarantee</span>
+<span class="n">myProducer</span><span class="o">.</span><span class="na">setLogFailuresOnly</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>   <span class="c1">// &quot;false&quot; by default</span>
+<span class="n">myProducer</span><span class="o">.</span><span class="na">setFlushOnCheckpoint</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  <span class="c1">// &quot;false&quot; by default</span>
+
+<span class="n">stream</span><span class="o">.</span><span class="na">addSink</span><span class="o">(</span><span class="n">myProducer</span><span class="o">);</span></code></pre></div>
+
+  </div>
+  <div data-lang="java, Kafka 0.10+">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">FlinkKafkaProducer010Configuration</span> <span class="n">myProducerConfig</span> <span class="o">=</span> <span class="n">FlinkKafkaProducer010</span><span class="o">.</span><span class="na">writeToKafkaWithTimestamps</span><span class="o">(</span>
+        <span class="n">stream</span><span class="o">,</span>                     <span class="c1">// input stream</span>
+        <span class="s">&quot;my-topic&quot;</span><span class="o">,</span>                 <span class="c1">// target topic</span>
+        <span class="k">new</span> <span class="nf">SimpleStringSchema</span><span class="o">(),</span>   <span class="c1">// serialization schema</span>
+        <span class="n">properties</span><span class="o">);</span>                <span class="c1">// custom configuration for KafkaProducer (including broker list)</span>
+
+<span class="c1">// the following is necessary for at-least-once delivery guarantee</span>
+<span class="n">myProducerConfig</span><span class="o">.</span><span class="na">setLogFailuresOnly</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>   <span class="c1">// &quot;false&quot; by default</span>
+<span class="n">myProducerConfig</span><span class="o">.</span><span class="na">setFlushOnCheckpoint</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>  <span class="c1">// &quot;false&quot; by default</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala, Kafka 0.8+">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">stream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="k">val</span> <span class="n">myProducer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FlinkKafkaProducer08</span><span class="o">[</span><span class="kt">String</span><span class="o">](</span>
+        <span class="s">&quot;localhost:9092&quot;</span><span class="o">,</span>         <span class="c1">// broker list</span>
+        <span class="s">&quot;my-topic&quot;</span><span class="o">,</span>               <span class="c1">// target topic</span>
+        <span class="k">new</span> <span class="nc">SimpleStringSchema</span><span class="o">)</span>   <span class="c1">// serialization schema</span>
+
+<span class="c1">// the following is necessary for at-least-once delivery guarantee</span>
+<span class="n">myProducer</span><span class="o">.</span><span class="n">setLogFailuresOnly</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>   <span class="c1">// &quot;false&quot; by default</span>
+<span class="n">myProducer</span><span class="o">.</span><span class="n">setFlushOnCheckpoint</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>  <span class="c1">// &quot;false&quot; by default</span>
+
+<span class="n">stream</span><span class="o">.</span><span class="n">addSink</span><span class="o">(</span><span class="n">myProducer</span><span class="o">)</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala, Kafka 0.10+">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">stream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="k">val</span> <span class="n">myProducerConfig</span> <span class="k">=</span> <span class="nc">FlinkKafkaProducer010</span><span class="o">.</span><span class="n">writeToKafkaWithTimestamps</span><span class="o">(</span>
+        <span class="n">stream</span><span class="o">,</span>                   <span class="c1">// input stream</span>
+        <span class="s">&quot;my-topic&quot;</span><span class="o">,</span>               <span class="c1">// target topic</span>
+        <span class="k">new</span> <span class="nc">SimpleStringSchema</span><span class="o">,</span>   <span class="c1">// serialization schema</span>
+        <span class="n">properties</span><span class="o">)</span>               <span class="c1">// custom configuration for KafkaProducer (including broker list)</span>
+
+<span class="c1">// the following is necessary for at-least-once delivery guarantee</span>
+<span class="n">myProducerConfig</span><span class="o">.</span><span class="n">setLogFailuresOnly</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>   <span class="c1">// &quot;false&quot; by default</span>
+<span class="n">myProducerConfig</span><span class="o">.</span><span class="n">setFlushOnCheckpoint</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>  <span class="c1">// &quot;false&quot; by default</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>The above examples demonstrate the basic usage of creating a Flink Kafka Producer
+to write streams to a single Kafka target topic. For more advanced usages, there
+are other constructor variants that allow providing the following:</p>
+
+<ul>
+  <li><em>Providing custom properties</em>:
+ The producer allows providing a custom properties configuration for the internal <code>KafkaProducer</code>.
+ Please refer to the <a href="https://kafka.apache.org/documentation.html">Apache Kafka documentation</a> for
+ details on how to configure Kafka Producers.</li>
+  <li><em>Custom partitioner</em>: To assign records to specific
+ partitions, you can provide an implementation of a <code>FlinkKafkaPartitioner</code> to the
+ constructor. This partitioner will be called for each record in the stream
+ to determine which exact partition of the target topic the record should be sent to.</li>
+  <li><em>Advanced serialization schema</em>: Similar to the consumer,
+ the producer also allows using an advanced serialization schema called <code>KeyedSerializationSchema</code>,
+ which allows serializing the key and value separately. It also allows to override the target topic,
+ so that one producer instance can send data to multiple topics.</li>
+</ul>
+
+<h3 id="kafka-producers-and-fault-tolerance">Kafka Producers and Fault Tolerance</h3>
+
+<p>With Flink’s checkpointing enabled, the Flink Kafka Producer can provide
+at-least-once delivery guarantees.</p>
+
+<p>Besides enabling Flink’s checkpointing, you should also configure the setter
+methods <code>setLogFailuresOnly(boolean)</code> and <code>setFlushOnCheckpoint(boolean)</code> appropriately,
+as shown in the above examples in the previous section:</p>
+
+<ul>
+  <li><code>setLogFailuresOnly(boolean)</code>: enabling this will let the producer log failures only
+ instead of catching and rethrowing them. This essentially accounts the record
+ to have succeeded, even if it was never written to the target Kafka topic. This
+ must be disabled for at-least-once.</li>
+  <li><code>setFlushOnCheckpoint(boolean)</code>: with this enabled, Flink’s checkpoints will wait for any
+ on-the-fly records at the time of the checkpoint to be acknowledged by Kafka before
+ succeeding the checkpoint. This ensures that all records before the checkpoint have
+ been written to Kafka. This must be enabled for at-least-once.</li>
+</ul>
+
+<p><strong>Note</strong>: By default, the number of retries is set to “0”. This means that when <code>setLogFailuresOnly</code> is set to <code>false</code>,
+the producer fails immediately on errors, including leader changes. The value is set to “0” by default to avoid
+duplicate messages in the target topic that are caused by retries. For most production environments with frequent broker changes,
+we recommend setting the number of retries to a higher value.</p>
+
+<p><strong>Note</strong>: There is currently no transactional producer for Kafka, so Flink can not guarantee exactly-once delivery
+into a Kafka topic.</p>
+
+<h2 id="using-kafka-timestamps-and-flink-event-time-in-kafka-010">Using Kafka timestamps and Flink event time in Kafka 0.10</h2>
+
+<p>Since Apache Kafka 0.10+, Kafka’s messages can carry <a href="https://cwiki.apache.org/confluence/display/KAFKA/KIP-32+-+Add+timestamps+to+Kafka+message">timestamps</a>, indicating
+the time the event has occurred (see <a href="../event_time.html">“event time” in Apache Flink</a>) or the time when the message
+has been written to the Kafka broker.</p>
+
+<p>The <code>FlinkKafkaConsumer010</code> will emit records with the timestamp attached, if the time characteristic in Flink is 
+set to <code>TimeCharacteristic.EventTime</code> (<code>StreamExecutionEnvironment.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)</code>).</p>
+
+<p>The Kafka consumer does not emit watermarks. To emit watermarks, the same mechanisms as described above in 
+“Kafka Consumers and Timestamp Extraction/Watermark Emission”  using the <code>assignTimestampsAndWatermarks</code> method are applicable.</p>
+
+<p>There is no need to define a timestamp extractor when using the timestamps from Kafka. The <code>previousElementTimestamp</code> argument of 
+the <code>extractTimestamp()</code> method contains the timestamp carried by the Kafka message.</p>
+
+<p>A timestamp extractor for a Kafka consumer would look like this:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">extractTimestamp</span><span class="o">(</span><span class="n">Long</span> <span class="n">element</span><span class="o">,</span> <span class="kt">long</span> <span class="n">previousElementTimestamp</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">previousElementTimestamp</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+
+<p>The <code>FlinkKafkaProducer010</code> only emits the record timestamp, if <code>setWriteTimestampToKafka(true)</code> is set.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">FlinkKafkaProducer010</span><span class="o">.</span><span class="na">FlinkKafkaProducer010Configuration</span> <span class="n">config</span> <span class="o">=</span> <span class="n">FlinkKafkaProducer010</span><span class="o">.</span><span class="na">writeToKafkaWithTimestamps</span><span class="o">(</span><span class="n">streamWithTimestamps</span><span class="o">,</span> <span class="n">topic</span><span class="o">,</span> <span class="k">new</span> <span class="nf">SimpleStringSchema</span><span class="o">(),</span> <span class="n">standardProps</span><span class="o">);</span>
+<span class="n">config</span><span class="o">.</span><span class="na">setWriteTimestampToKafka</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></code></pre></div>
+
+<h2 id="kafka-connector-metrics">Kafka Connector metrics</h2>
+
+<p>Flink’s Kafka connectors provide some metrics through Flink’s <a href="/monitoring/metrics.html">metrics system</a> to analyze
+the behavior of the connector.
+The producers export Kafka’s internal metrics through Flink’s metric system for all supported versions. The consumers export 
+all metrics starting from Kafka version 0.9. The Kafka documentation lists all exported metrics 
+in its <a href="http://kafka.apache.org/documentation/#selector_monitoring">documentation</a>.</p>
+
+<p>In addition to these metrics, all consumers expose the <code>current-offsets</code> and <code>committed-offsets</code> for each topic partition.
+The <code>current-offsets</code> refers to the current offset in the partition. This refers to the offset of the last element that
+we retrieved and emitted successfully. The <code>committed-offsets</code> is the last committed offset.</p>
+
+<p>The Kafka Consumers in Flink commit the offsets back to Zookeeper (Kafka 0.8) or the Kafka brokers (Kafka 0.9+). If checkpointing
+is disabled, offsets are committed periodically.
+With checkpointing, the commit happens once all operators in the streaming topology have confirmed that they’ve created a checkpoint of their state. 
+This provides users with at-least-once semantics for the offsets committed to Zookeer or the broker. For offsets checkpointed to Flink, the system 
+provides exactly once guarantees.</p>
+
+<p>The offsets committed to ZK or the broker can also be used to track the read progress of the Kafka consumer. The difference between
+the committed offset and the most recent offset in each partition is called the <em>consumer lag</em>. If the Flink topology is consuming
+the data slower from the topic than new data is added, the lag will increase and the consumer will fall behind.
+For large production deployments we recommend monitoring that metric to avoid increasing latency.</p>
+
+<h2 id="enabling-kerberos-authentication-for-versions-09-and-above-only">Enabling Kerberos Authentication (for versions 0.9+ and above only)</h2>
+
+<p>Flink provides first-class support through the Kafka connector to authenticate to a Kafka installation
+configured for Kerberos. Simply configure Flink in <code>flink-conf.yaml</code> to enable Kerberos authentication for Kafka like so:</p>
+
+<ol>
+  <li>Configure Kerberos credentials by setting the following -
+    <ul>
+      <li><code>security.kerberos.login.use-ticket-cache</code>: By default, this is <code>true</code> and Flink will attempt to use Kerberos credentials in ticket caches managed by <code>kinit</code>. 
+ Note that when using the Kafka connector in Flink jobs deployed on YARN, Kerberos authorization using ticket caches will not work. This is also the case when deploying using Mesos, as authorization using ticket cache is not supported for Mesos deployments.</li>
+      <li><code>security.kerberos.login.keytab</code> and <code>security.kerberos.login.principal</code>: To use Kerberos keytabs instead, set values for both of these properties.</li>
+    </ul>
+  </li>
+  <li>Append <code>KafkaClient</code> to <code>security.kerberos.login.contexts</code>: This tells Flink to provide the configured Kerberos credentials to the Kafka login context to be used for Kafka authentication.</li>
+</ol>
+
+<p>Once Kerberos-based Flink security is enabled, you can authenticate to Kafka with either the Flink Kafka Consumer or Producer by simply including the following two settings in the provided properties configuration that is passed to the internal Kafka client:</p>
+
+<ul>
+  <li>Set <code>security.protocol</code> to <code>SASL_PLAINTEXT</code> (default <code>NONE</code>): The protocol used to communicate to Kafka brokers.
+When using standalone Flink deployment, you can also use <code>SASL_SSL</code>; please see how to configure the Kafka client for SSL <a href="https://kafka.apache.org/documentation/#security_configclients">here</a>.</li>
+  <li>Set <code>sasl.kerberos.service.name</code> to <code>kafka</code> (default <code>kafka</code>): The value for this should match the <code>sasl.kerberos.service.name</code> used for Kafka broker configurations. A mismatch in service name between client and server configuration will cause the authentication to fail.</li>
+</ul>
+
+<p>For more information on Flink configuration for Kerberos security, please see <a href="/ops/config.html">here</a>.
+You can also find <a href="/ops/security-kerberos.html">here</a> further details on how Flink internally setups Kerberos-based security.</p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

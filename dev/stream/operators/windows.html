@@ -1,0 +1,4461 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.4-SNAPSHOT Documentation: Windows</title>
+    <link rel="shortcut icon" href="/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/page/css/flink.css">
+    <link rel="stylesheet" href="/page/css/syntax.css">
+    <link rel="stylesheet" href="/page/css/codetabs.css">
+    <link rel="stylesheet" href="/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href=""><img class="bottom" alt="Apache Flink" src="/page/img/navbar-brand-logo.jpg"></a> v1.4-SNAPSHOT</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/index.html"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  <li><a href="/examples/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/run_example_quickstart.html">Monitoring Wikipedia Edits</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/examples.html">Batch Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-11" data-toggle="collapse"><i class="fa fa-book title appetizer" aria-hidden="true"></i> Cookbooks <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-11"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/cookbooks/join-streams.html">Join Streams</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/cookbooks/pattern-detection.html">Pattern Detection with CEP</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-15" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-15"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/java_api_quickstart.html">Sample Project in Java</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/quickstart/scala_api_quickstart.html">Sample Project in Scala</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/linking_with_flink.html">Linking with Flink</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/scala_shell.html">Scala REPL</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/linking.html">Linking with Optional Modules</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-26" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-26"><ul>
+  <li><a href="/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-30" data-toggle="collapse" class="active">Streaming (DataStream API)</a><div class="collapse in" id="collapse-30"><ul>
+  <li><a href="/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-31" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-31"><ul>
+  <li><a href="/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="/dev/stream/state/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-42" data-toggle="collapse" class="active">Operators</a><div class="collapse in" id="collapse-42"><ul>
+  <li><a href="/dev/stream/operators/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/dev/stream/operators/windows.html" class="active">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-47" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-47"><ul>
+  <li><a href="/dev/connectors/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-61" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-61"><ul>
+  <li><a href="/dev/batch/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-72" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-72"><ul>
+  <li><a href="/dev/table/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/streaming.html">Streaming Concepts</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-80" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-80"><ul>
+  <li><a href="/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-83" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-83"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-90" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-90"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/storm_compatibility.html">Storm Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-93" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-93"><ul>
+  <li><a href="/dev/libs/gelly/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-101" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-101"><ul>
+  <li><a href="/dev/libs/ml/index.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-120" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-120"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-121" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-121"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/jobmanager_high_availability.html">High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-132" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-132"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-156" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-156"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+  <li class="divider"></li>
+  <li><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.4/api/java"><i class="fa fa-external-link title" aria-hidden="true"></i> Javadocs</a></li>
+  <li><a href="http://flink.apache.org"><i class="fa fa-external-link title" aria-hidden="true"></i> Project Page</a></li>
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="/dev/datastream_api.html">Streaming (DataStream API)</a></li>
+  
+
+  
+  
+    <li><a href="/dev/stream/operators/index.html">Operators</a></li>
+  
+
+  
+  
+    <li class="active">Windows</li>
+  
+
+</ol>
+
+<h1>Windows</h1>
+
+
+
+
+<p>Windows are at the heart of processing infinite streams. Windows split the stream into “buckets” of finite size,
+over which we can apply computations. This document focuses on how windowing is performed in Flink and how the
+programmer can benefit to the maximum from its offered functionality.</p>
+
+<p>The general structure of a windowed Flink program is presented below. The first snippet refers to <em>keyed</em> streams,
+while the second to <em>non-keyed</em> ones. As one can see, the only difference is the <code>keyBy(...)</code> call for the keyed streams
+and the <code>window(...)</code> which becomes <code>windowAll(...)</code> for non-keyed streams. These is also going to serve as a roadmap
+for the rest of the page.</p>
+
+<p><strong>Keyed Windows</strong></p>
+
+<div class="highlight"><pre><code>stream
+       .keyBy(...)          &lt;-  keyed versus non-keyed windows
+       .window(...)         &lt;-  required: "assigner"
+      [.trigger(...)]       &lt;-  optional: "trigger" (else default trigger)
+      [.evictor(...)]       &lt;-  optional: "evictor" (else no evictor)
+      [.allowedLateness()]  &lt;-  optional, else zero
+       .reduce/fold/apply() &lt;-  required: "function"
+</code></pre></div>
+
+<p><strong>Non-Keyed Windows</strong></p>
+
+<div class="highlight"><pre><code>stream
+       .windowAll(...)      &lt;-  required: "assigner"
+      [.trigger(...)]       &lt;-  optional: "trigger" (else default trigger)
+      [.evictor(...)]       &lt;-  optional: "evictor" (else no evictor)
+      [.allowedLateness()]  &lt;-  optional, else zero
+       .reduce/fold/apply() &lt;-  required: "function"
+</code></pre></div>
+
+<p>In the above, the commands in square brackets ([…]) are optional. This reveals that Flink allows you to customize your
+windowing logic in many different ways so that it best fits your needs.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#window-lifecycle" id="markdown-toc-window-lifecycle">Window Lifecycle</a></li>
+  <li><a href="#keyed-vs-non-keyed-windows" id="markdown-toc-keyed-vs-non-keyed-windows">Keyed vs Non-Keyed Windows</a></li>
+  <li><a href="#window-assigners" id="markdown-toc-window-assigners">Window Assigners</a>    <ul>
+      <li><a href="#tumbling-windows" id="markdown-toc-tumbling-windows">Tumbling Windows</a></li>
+      <li><a href="#sliding-windows" id="markdown-toc-sliding-windows">Sliding Windows</a></li>
+      <li><a href="#session-windows" id="markdown-toc-session-windows">Session Windows</a></li>
+      <li><a href="#global-windows" id="markdown-toc-global-windows">Global Windows</a></li>
+    </ul>
+  </li>
+  <li><a href="#window-functions" id="markdown-toc-window-functions">Window Functions</a>    <ul>
+      <li><a href="#reducefunction" id="markdown-toc-reducefunction">ReduceFunction</a></li>
+      <li><a href="#foldfunction" id="markdown-toc-foldfunction">FoldFunction</a></li>
+      <li><a href="#windowfunction---the-generic-case" id="markdown-toc-windowfunction---the-generic-case">WindowFunction - The Generic Case</a></li>
+      <li><a href="#processwindowfunction" id="markdown-toc-processwindowfunction">ProcessWindowFunction</a></li>
+      <li><a href="#windowfunction-with-incremental-aggregation" id="markdown-toc-windowfunction-with-incremental-aggregation">WindowFunction with Incremental Aggregation</a></li>
+    </ul>
+  </li>
+  <li><a href="#triggers" id="markdown-toc-triggers">Triggers</a>    <ul>
+      <li><a href="#fire-and-purge" id="markdown-toc-fire-and-purge">Fire and Purge</a></li>
+      <li><a href="#default-triggers-of-windowassigners" id="markdown-toc-default-triggers-of-windowassigners">Default Triggers of WindowAssigners</a></li>
+      <li><a href="#built-in-and-custom-triggers" id="markdown-toc-built-in-and-custom-triggers">Built-in and Custom Triggers</a></li>
+    </ul>
+  </li>
+  <li><a href="#evictors" id="markdown-toc-evictors">Evictors</a></li>
+  <li><a href="#allowed-lateness" id="markdown-toc-allowed-lateness">Allowed Lateness</a>    <ul>
+      <li><a href="#getting-late-data-as-a-side-output" id="markdown-toc-getting-late-data-as-a-side-output">Getting late data as a side output</a></li>
+      <li><a href="#late-elements-considerations" id="markdown-toc-late-elements-considerations">Late elements considerations</a></li>
+    </ul>
+  </li>
+  <li><a href="#useful-state-size-considerations" id="markdown-toc-useful-state-size-considerations">Useful state size considerations</a></li>
+</ul>
+
+<h2 id="window-lifecycle">Window Lifecycle</h2>
+
+<p>In a nutshell, a window is <strong>created</strong> as soon as the first element that should belong to this window arrives, and the
+window is <strong>completely removed</strong> when the time (event or processing time) passes its end timestamp plus the user-specified
+<code>allowed lateness</code> (see <a href="#allowed-lateness">Allowed Lateness</a>). Flink guarantees removal only for time-based
+windows and not for other types, <em>e.g.</em> global windows (see <a href="#window-assigners">Window Assigners</a>). For example, with an
+event-time-based windowing strategy that creates non-overlapping (or tumbling) windows every 5 minutes and has an allowed
+lateness of 1 min, Flink will create a new window for the interval between <code>12:00</code> and <code>12:05</code> when the first element with
+a timestamp that falls into this interval arrives, and it will remove it when the watermark passes the <code>12:06</code>
+timestamp.</p>
+
+<p>In addition, each window will have a <code>Trigger</code> (see <a href="#triggers">Triggers</a>) and a function (<code>WindowFunction</code>, <code>ReduceFunction</code> or
+<code>FoldFunction</code>) (see <a href="#window-functions">Window Functions</a>) attached to it. The function will contain the computation to
+be applied to the contents of the window, while the <code>Trigger</code> specifies the conditions under which the window is
+considered ready for the function to be applied. A triggering policy might be something like “when the number of elements
+in the window is more than 4”, or “when the watermark passes the end of the window”. A trigger can also decide to
+purge a window’s contents any time between its creation and removal. Purging in this case only refers to the elements
+in the window, and <em>not</em> the window metadata. This means that new data can still be added to that window.</p>
+
+<p>Apart from the above, you can specify an <code>Evictor</code> (see <a href="#evictors">Evictors</a>) which will be able to remove
+elements from the window after the trigger fires and before and/or after the function is applied.</p>
+
+<p>In the following we go into more detail for each of the components above. We start with the required parts in the above
+snippet (see <a href="#keyed-vs-non-keyed-windows">Keyed vs Non-Keyed Windows</a>, <a href="#window-assigner">Window Assigner</a>, and
+<a href="#window-function">Window Function</a>) before moving to the optional ones.</p>
+
+<h2 id="keyed-vs-non-keyed-windows">Keyed vs Non-Keyed Windows</h2>
+
+<p>The first thing to specify is whether your stream should be keyed or not. This has to be done before defining the window.
+Using the <code>keyBy(...)</code> will split your infinite stream into logical keyed streams. If <code>keyBy(...)</code> is not called, your
+stream is not keyed.</p>
+
+<p>In the case of keyed streams, any attribute of your incoming events can be used as a key
+(more details <a href="/dev/api_concepts.html#specifying-keys">here</a>). Having a keyed stream will
+allow your windowed computation to be performed in parallel by multiple tasks, as each logical keyed stream can be processed
+independently from the rest. All elements referring to the same key will be sent to the same parallel task.</p>
+
+<p>In case of non-keyed streams, your original stream will not be split into multiple logical streams and all the windowing logic
+will be performed by a single task, <em>i.e.</em> with parallelism of 1.</p>
+
+<h2 id="window-assigners">Window Assigners</h2>
+
+<p>After specifying whether your stream is keyed or not, the next step is to define a <em>window assigner</em>.
+The window assigner defines how elements are assigned to windows. This is done by specifying the <code>WindowAssigner</code>
+of your choice in the <code>window(...)</code> (for <em>keyed</em> streams) or the <code>windowAll()</code> (for <em>non-keyed</em> streams) call.</p>
+
+<p>A <code>WindowAssigner</code> is responsible for assigning each incoming element to one or more windows. Flink comes
+with pre-defined window assigners for the most common use cases, namely <em>tumbling windows</em>,
+<em>sliding windows</em>, <em>session windows</em> and <em>global windows</em>. You can also implement a custom window assigner by
+extending the <code>WindowAssigner</code> class. All built-in window assigners (except the global
+windows) assign elements to windows based on time, which can either be processing time or event
+time. Please take a look at our section on <a href="/dev/event_time.html">event time</a> to learn
+about the difference between processing time and event time and how timestamps and watermarks are generated.</p>
+
+<p>In the following, we show how Flink’s pre-defined window assigners work and how they are used
+in a DataStream program. The following figures visualize the workings of each assigner. The purple circles
+represent elements of the stream, which are partitioned by some key (in this case <em>user 1</em>, <em>user 2</em> and <em>user 3</em>).
+The x-axis shows the progress of time.</p>
+
+<h3 id="tumbling-windows">Tumbling Windows</h3>
+
+<p>A <em>tumbling windows</em> assigner assigns each element to a window of a specified <em>window size</em>.
+Tumbling windows have a fixed size and do not overlap. For example, if you specify a tumbling
+window with a size of 5 minutes, the current window will be evaluated and a new window will be
+started every five minutes as illustrated by the following figure.</p>
+
+<p><img src="/fig/tumbling-windows.svg" class="center" style="width: 100%;" /></p>
+
+<p>The following code snippets show how to use tumbling windows.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="c1">// tumbling event-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">TumblingEventTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="c1">// tumbling processing-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">TumblingProcessingTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="c1">// daily tumbling event-time windows offset by -8 hours.</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">TumblingEventTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">days</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="n">Time</span><span class="o">.</span><span class="na">hours</span><span class="o">(-</span><span class="mi">8</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="c1">// tumbling event-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">TumblingEventTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="c1">// tumbling processing-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">TumblingProcessingTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="c1">// daily tumbling event-time windows offset by -8 hours.</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">TumblingEventTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">days</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="nc">Time</span><span class="o">.</span><span class="n">hours</span><span class="o">(-</span><span class="mi">8</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Time intervals can be specified by using one of <code>Time.milliseconds(x)</code>, <code>Time.seconds(x)</code>,
+<code>Time.minutes(x)</code>, and so on.</p>
+
+<p>As shown in the last example, tumbling window assigners also take an optional <code>offset</code>
+parameter that can be used to change the alignment of windows. For example, without offsets
+hourly tumbling windows are aligned with epoch, that is you will get windows such as
+<code>1:00:00.000 - 1:59:59.999</code>, <code>2:00:00.000 - 2:59:59.999</code> and so on. If you want to change
+that you can give an offset. With an offset of 15 minutes you would, for example, get
+<code>1:15:00.000 - 2:14:59.999</code>, <code>2:15:00.000 - 3:14:59.999</code> etc.
+An important use case for offsets is to adjust windows to timezones other than UTC-0.
+For example, in China you would have to specify an offset of <code>Time.hours(-8)</code>.</p>
+
+<h3 id="sliding-windows">Sliding Windows</h3>
+
+<p>The <em>sliding windows</em> assigner assigns elements to windows of fixed length. Similar to a tumbling
+windows assigner, the size of the windows is configured by the <em>window size</em> parameter.
+An additional <em>window slide</em> parameter controls how frequently a sliding window is started. Hence,
+sliding windows can be overlapping if the slide is smaller than the window size. In this case elements
+are assigned to multiple windows.</p>
+
+<p>For example, you could have windows of size 10 minutes that slides by 5 minutes. With this you get every
+5 minutes a window that contains the events that arrived during the last 10 minutes as depicted by the
+following figure.</p>
+
+<p><img src="/fig/sliding-windows.svg" class="center" style="width: 100%;" /></p>
+
+<p>The following code snippets show how to use sliding windows.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="c1">// sliding event-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">SlidingEventTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="c1">// sliding processing-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">SlidingProcessingTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="n">Time</span><span class="o">.</span><span class="na">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="c1">// sliding processing-time windows offset by -8 hours</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">SlidingProcessingTimeWindows</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">hours</span><span class="o">(</span><span class="mi">12</span><span class="o">),</span> <span class="n">Time</span><span class="o">.</span><span class="na">hours</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="n">Time</span><span class="o">.</span><span class="na">hours</span><span class="o">(-</span><span class="mi">8</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="c1">// sliding event-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">SlidingEventTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="c1">// sliding processing-time windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">SlidingProcessingTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="nc">Time</span><span class="o">.</span><span class="n">seconds</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="c1">// sliding processing-time windows offset by -8 hours</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">SlidingProcessingTimeWindows</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">hours</span><span class="o">(</span><span class="mi">12</span><span class="o">),</span> <span class="nc">Time</span><span class="o">.</span><span class="n">hours</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="nc">Time</span><span class="o">.</span><span class="n">hours</span><span class="o">(-</span><span class="mi">8</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Time intervals can be specified by using one of <code>Time.milliseconds(x)</code>, <code>Time.seconds(x)</code>,
+<code>Time.minutes(x)</code>, and so on.</p>
+
+<p>As shown in the last example, sliding window assigners also take an optional <code>offset</code> parameter
+that can be used to change the alignment of windows. For example, without offsets hourly windows
+sliding by 30 minutes are aligned with epoch, that is you will get windows such as
+<code>1:00:00.000 - 1:59:59.999</code>, <code>1:30:00.000 - 2:29:59.999</code> and so on. If you want to change that
+you can give an offset. With an offset of 15 minutes you would, for example, get
+<code>1:15:00.000 - 2:14:59.999</code>, <code>1:45:00.000 - 2:44:59.999</code> etc.
+An important use case for offsets is to adjust windows to timezones other than UTC-0.
+For example, in China you would have to specify an offset of <code>Time.hours(-8)</code>.</p>
+
+<h3 id="session-windows">Session Windows</h3>
+
+<p>The <em>session windows</em> assigner groups elements by sessions of activity. Session windows do not overlap and
+do not have a fixed start and end time, in contrast to <em>tumbling windows</em> and <em>sliding windows</em>. Instead a
+session window closes when it does not receive elements for a certain period of time, <em>i.e.</em>, when a gap of
+inactivity occurred. A session window assigner is configured with the <em>session gap</em> which
+defines how long is the required period of inactivity. When this period expires, the current session closes
+and subsequent elements are assigned to a new session window.</p>
+
+<p><img src="/fig/session-windows.svg" class="center" style="width: 100%;" /></p>
+
+<p>The following code snippets show how to use session windows.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="c1">// event-time session windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">EventTimeSessionWindows</span><span class="o">.</span><span class="na">withGap</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">minutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="c1">// processing-time session windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">ProcessingTimeSessionWindows</span><span class="o">.</span><span class="na">withGap</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">minutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="c1">// event-time session windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">EventTimeSessionWindows</span><span class="o">.</span><span class="n">withGap</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">minutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="c1">// processing-time session windows</span>
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">ProcessingTimeSessionWindows</span><span class="o">.</span><span class="n">withGap</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">minutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)))</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Time intervals can be specified by using one of <code>Time.milliseconds(x)</code>, <code>Time.seconds(x)</code>,
+<code>Time.minutes(x)</code>, and so on.</p>
+
+<p><span class="label label-danger">Attention</span> Since session windows do not have a fixed start and end,
+they are  evaluated differently than tumbling and sliding windows. Internally, a session window operator
+creates a new window for each arriving record and merges windows together if their are closer to each other
+than the defined gap.
+In order to be mergeable, a session window operator requires a merging <a href="#triggers">Trigger</a> and a merging
+<a href="#window-functions">Window Function</a>, such as <code>ReduceFunction</code> or <code>WindowFunction</code>
+(<code>FoldFunction</code> cannot merge.)</p>
+
+<h3 id="global-windows">Global Windows</h3>
+
+<p>A <em>global windows</em> assigner assigns all elements with the same key to the same single <em>global window</em>.
+This windowing scheme is only useful if you also specify a custom <a href="#triggers">trigger</a>. Otherwise,
+no computation will be performed, as the global window does not have a natural end at
+which we could process the aggregated elements.</p>
+
+<p><img src="/fig/non-windowed.svg" class="center" style="width: 100%;" /></p>
+
+<p>The following code snippets show how to use a global window.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="n">GlobalWindows</span><span class="o">.</span><span class="na">create</span><span class="o">())</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(</span><span class="nc">GlobalWindows</span><span class="o">.</span><span class="n">create</span><span class="o">())</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span></code></pre></div>
+
+  </div>
+</div>
+
+<h2 id="window-functions">Window Functions</h2>
+
+<p>After defining the window assigner, we need to specify the computation that we want
+to perform on each of these windows. This is the responsibility of the <em>window function</em>, which is used to process the
+elements of each (possibly keyed) window once the system determines that a window is ready for processing
+(see <a href="#triggers">triggers</a> for how Flink determines when a window is ready).</p>
+
+<p>The window function can be one of <code>ReduceFunction</code>, <code>FoldFunction</code> or <code>WindowFunction</code>. The first
+two can be executed more efficiently (see <a href="#state size">State Size</a> section) because Flink can incrementally aggregate
+the elements for each window as they arrive. A <code>WindowFunction</code> gets an <code>Iterable</code> for all the elements contained in a
+window and additional meta information about the window to which the elements belong.</p>
+
+<p>A windowed transformation with a <code>WindowFunction</code> cannot be executed as efficiently as the other
+cases because Flink has to buffer <em>all</em> elements for a window internally before invoking the function.
+This can be mitigated by combining a <code>WindowFunction</code> with a <code>ReduceFunction</code> or <code>FoldFunction</code> to
+get both incremental aggregation of window elements and the additional window metadata that the
+<code>WindowFunction</code> receives. We will look at examples for each of these variants.</p>
+
+<h3 id="reducefunction">ReduceFunction</h3>
+
+<p>A <code>ReduceFunction</code> specifies how two elements from the input are combined to produce
+an output element of the same type. Flink uses a <code>ReduceFunction</code> to incrementally aggregate
+the elements of a window.</p>
+
+<p>A <code>ReduceFunction</code> can be defined and used like this:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="k">new</span> <span class="n">ReduceFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="nf">reduce</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">v1</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">v2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;&gt;(</span><span class="n">v1</span><span class="o">.</span><span class="na">f0</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="na">f1</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="na">f1</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">});</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">reduce</span> <span class="o">{</span> <span class="o">(</span><span class="n">v1</span><span class="o">,</span> <span class="n">v2</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">v1</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">v1</span><span class="o">.</span><span class="n">_2</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="n">_2</span><span class="o">)</span> <span class="o">}</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>The above example sums up the second fields of the tuples for all elements in a window.</p>
+
+<h3 id="foldfunction">FoldFunction</h3>
+
+<p>A <code>FoldFunction</code> specifies how an input element of the window is combined with an element of
+the output type. The <code>FoldFunction</code> is incrementally called for each element that is added
+to the window and the current output value. The first element is combined with a pre-defined initial value of the output type.</p>
+
+<p>A <code>FoldFunction</code> can be defined and used like this:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">fold</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">FoldFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+       <span class="kd">public</span> <span class="n">String</span> <span class="nf">fold</span><span class="o">(</span><span class="n">String</span> <span class="n">acc</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="na">f1</span><span class="o">;</span>
+       <span class="o">}</span>
+    <span class="o">});</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">fold</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span> <span class="o">(</span><span class="n">acc</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">_2</span> <span class="o">}</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>The above example appends all input <code>Long</code> values to an initially empty <code>String</code>.</p>
+
+<p><span class="label label-danger">Attention</span> <code>fold()</code> cannot be used with session windows or other mergeable windows.</p>
+
+<h3 id="windowfunction---the-generic-case">WindowFunction - The Generic Case</h3>
+
+<p>A <code>WindowFunction</code> gets an <code>Iterable</code> containing all the elements of the window and provides
+the most flexibility of all window functions. This comes
+at the cost of performance and resource consumption, because elements cannot be incrementally
+aggregated but instead need to be buffered internally until the window is considered ready for processing.</p>
+
+<p>The signature of a <code>WindowFunction</code> looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">WindowFunction</span><span class="o">&lt;</span><span class="n">IN</span><span class="o">,</span> <span class="n">OUT</span><span class="o">,</span> <span class="n">KEY</span><span class="o">,</span> <span class="n">W</span> <span class="kd">extends</span> <span class="n">Window</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Function</span><span class="o">,</span> <span class="n">Serializable</span> <span class="o">{</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Evaluates the window and outputs none or several elements.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param key The key for which this window is evaluated.</span>
+<span class="cm">   * @param window The window that is being evaluated.</span>
+<span class="cm">   * @param input The elements in the window being evaluated.</span>
+<span class="cm">   * @param out A collector for emitting elements.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @throws Exception The function may throw exceptions to fail the program and trigger recovery.</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="n">KEY</span> <span class="n">key</span><span class="o">,</span> <span class="n">W</span> <span class="n">window</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">IN</span><span class="o">&gt;</span> <span class="n">input</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">OUT</span><span class="o">&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">WindowFunction</span><span class="o">[</span><span class="kt">IN</span>, <span class="kt">OUT</span>, <span class="kt">KEY</span>, <span class="kt">W</span> <span class="k">&lt;:</span> <span class="kt">Window</span><span class="o">]</span> <span class="nc">extends</span> <span class="nc">Function</span> <span class="k">with</span> <span class="nc">Serializable</span> <span class="o">{</span>
+
+  <span class="cm">/**</span>
+<span class="cm">    * Evaluates the window and outputs none or several elements.</span>
+<span class="cm">    *</span>
+<span class="cm">    * @param key    The key for which this window is evaluated.</span>
+<span class="cm">    * @param window The window that is being evaluated.</span>
+<span class="cm">    * @param input  The elements in the window being evaluated.</span>
+<span class="cm">    * @param out    A collector for emitting elements.</span>
+<span class="cm">    * @throws Exception The function may throw exceptions to fail the program and trigger recovery.</span>
+<span class="cm">    */</span>
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">key</span><span class="k">:</span> <span class="kt">KEY</span><span class="o">,</span> <span class="n">window</span><span class="k">:</span> <span class="kt">W</span><span class="o">,</span> <span class="n">input</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">IN</span><span class="o">],</span> <span class="n">out</span><span class="k">:</span> <span class="kt">Collector</span><span class="o">[</span><span class="kt">OUT</span><span class="o">])</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>A <code>WindowFunction</code> can be defined and used like this:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="k">new</span> <span class="nf">MyWindowFunction</span><span class="o">());</span>
+
+<span class="cm">/* ... */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyWindowFunction</span> <span class="kd">implements</span> <span class="n">WindowFunction</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">,</span> <span class="n">TimeWindow</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">TimeWindow</span> <span class="n">window</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">long</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Tuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="nl">in:</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">count</span><span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="s">&quot;Window: &quot;</span> <span class="o">+</span> <span class="n">window</span> <span class="o">+</span> <span class="s">&quot;count: &quot;</span> <span class="o">+</span> <span class="n">count</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">apply</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyWindowFunction</span><span class="o">())</span>
+
+<span class="cm">/* ... */</span>
+
+<span class="k">class</span> <span class="nc">MyWindowFunction</span> <span class="k">extends</span> <span class="nc">WindowFunction</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)</span>, <span class="kt">String</span>, <span class="kt">String</span>, <span class="kt">TimeWindow</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">apply</span><span class="o">(</span><span class="n">key</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">window</span><span class="k">:</span> <span class="kt">TimeWindow</span><span class="o">,</span> <span class="n">input</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)],</span> <span class="n">out</span><span class="k">:</span> <span class="kt">Collector</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span> <span class="o">()</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="n">count</span> <span class="k">=</span> <span class="mi">0L</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">in</span> <span class="k">&lt;-</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">count</span> <span class="k">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">}</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">collect</span><span class="o">(</span><span class="n">s</span><span class="s">&quot;Window $window count: $count&quot;</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>The example shows a <code>WindowFunction</code> to count the elements in a window. In addition, the window function adds information about the window to the output.</p>
+
+<p><span class="label label-danger">Attention</span> Note that using <code>WindowFunction</code> for simple aggregates such as count is quite inefficient. The next section shows how a <code>ReduceFunction</code> can be combined with a <code>WindowFunction</code> to get both incremental aggregation and the added information of a <code>WindowFunction</code>.</p>
+
+<h3 id="processwindowfunction">ProcessWindowFunction</h3>
+
+<p>In places where a <code>WindowFunction</code> can be used you can also use a <code>ProcessWindowFunction</code>. This
+is very similar to <code>WindowFunction</code>, except that the interface allows to query more information
+about the context in which the window evaluation happens.</p>
+
+<p>This is the <code>ProcessWindowFunction</code> interface:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ProcessWindowFunction</span><span class="o">&lt;</span><span class="n">IN</span><span class="o">,</span> <span class="n">OUT</span><span class="o">,</span> <span class="n">KEY</span><span class="o">,</span> <span class="n">W</span> <span class="kd">extends</span> <span class="n">Window</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Function</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Evaluates the window and outputs none or several elements.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param key The key for which this window is evaluated.</span>
+<span class="cm">     * @param context The context in which the window is being evaluated.</span>
+<span class="cm">     * @param elements The elements in the window being evaluated.</span>
+<span class="cm">     * @param out A collector for emitting elements.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @throws Exception The function may throw exceptions to fail the program and trigger recovery.</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span>
+            <span class="n">KEY</span> <span class="n">key</span><span class="o">,</span>
+            <span class="n">Context</span> <span class="n">context</span><span class="o">,</span>
+            <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">IN</span><span class="o">&gt;</span> <span class="n">elements</span><span class="o">,</span>
+            <span class="n">Collector</span><span class="o">&lt;</span><span class="n">OUT</span><span class="o">&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * The context holding window metadata</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Context</span> <span class="o">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         * @return The window that is being evaluated.</span>
+<span class="cm">         */</span>
+        <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">W</span> <span class="nf">window</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">ProcessWindowFunction</span><span class="o">[</span><span class="kt">IN</span>, <span class="kt">OUT</span>, <span class="kt">KEY</span>, <span class="kt">W</span> <span class="k">&lt;:</span> <span class="kt">Window</span><span class="o">]</span> <span class="nc">extends</span> <span class="nc">Function</span> <span class="o">{</span>
+
+  <span class="cm">/**</span>
+<span class="cm">    * Evaluates the window and outputs none or several elements.</span>
+<span class="cm">    *</span>
+<span class="cm">    * @param key      The key for which this window is evaluated.</span>
+<span class="cm">    * @param context  The context in which the window is being evaluated.</span>
+<span class="cm">    * @param elements The elements in the window being evaluated.</span>
+<span class="cm">    * @param out      A collector for emitting elements.</span>
+<span class="cm">    * @throws Exception The function may throw exceptions to fail the program and trigger recovery.</span>
+<span class="cm">    */</span>
+  <span class="nd">@throws</span><span class="o">[</span><span class="kt">Exception</span><span class="o">]</span>
+  <span class="k">def</span> <span class="n">process</span><span class="o">(</span>
+      <span class="n">key</span><span class="k">:</span> <span class="kt">KEY</span><span class="o">,</span>
+      <span class="n">context</span><span class="k">:</span> <span class="kt">Context</span><span class="o">,</span>
+      <span class="n">elements</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">IN</span><span class="o">],</span>
+      <span class="n">out</span><span class="k">:</span> <span class="kt">Collector</span><span class="o">[</span><span class="kt">OUT</span><span class="o">])</span>
+
+  <span class="cm">/**</span>
+<span class="cm">    * The context holding window metadata</span>
+<span class="cm">    */</span>
+  <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Context</span> <span class="o">{</span>
+    <span class="cm">/**</span>
+<span class="cm">      * @return The window that is being evaluated.</span>
+<span class="cm">      */</span>
+    <span class="k">def</span> <span class="n">window</span><span class="k">:</span> <span class="kt">W</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+</div>
+
+<p>It can be used like this:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="k">new</span> <span class="nf">MyProcessWindowFunction</span><span class="o">());</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">process</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyProcessWindowFunction</span><span class="o">())</span></code></pre></div>
+
+  </div>
+</div>
+
+<h3 id="windowfunction-with-incremental-aggregation">WindowFunction with Incremental Aggregation</h3>
+
+<p>A <code>WindowFunction</code> can be combined with either a <code>ReduceFunction</code> or a <code>FoldFunction</code> to
+incrementally aggregate elements as they arrive in the window.
+When the window is closed, the <code>WindowFunction</code> will be provided with the aggregated result.
+This allows to incrementally compute windows while having access to the
+additional window meta information of the <code>WindowFunction</code>.</p>
+
+<p><span class="label label-info">Note</span> You can also <code>ProcessWindowFunction</code> instead of
+<code>WindowFunction</code> for incremental window aggregation.</p>
+
+<h4 id="incremental-window-aggregation-with-foldfunction">Incremental Window Aggregation with FoldFunction</h4>
+
+<p>The following example shows how an incremental <code>FoldFunction</code> can be combined with
+a <code>WindowFunction</code> to extract the number of events in the window and return also
+the key and end time of the window.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+  <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="na">timeWindow</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="na">fold</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(</span><span class="s">&quot;&quot;</span><span class="o">,</span><span class="mi">0L</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span> <span class="k">new</span> <span class="nf">MyFoldFunction</span><span class="o">(),</span> <span class="k">new</span> <span class="nf">MyWindowFunction</span><span class="o">())</span>
+
+<span class="c1">// Function definitions</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MyFoldFunction</span>
+    <span class="kd">implements</span> <span class="n">FoldFunction</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">,</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">fold</span><span class="o">(</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">acc</span><span class="o">,</span> <span class="n">SensorReading</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">Integer</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">acc</span><span class="o">.</span><span class="na">getField</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+      <span class="n">acc</span><span class="o">.</span><span class="na">setField</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">acc</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MyWindowFunction</span>
+    <span class="kd">implements</span> <span class="n">WindowFunction</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;,</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;,</span> <span class="n">String</span><span class="o">,</span> <span class="n">TimeWindow</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span>
+                    <span class="n">TimeWindow</span> <span class="n">window</span><span class="o">,</span>
+                    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">counts</span><span class="o">,</span>
+                    <span class="n">Collector</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Integer</span> <span class="n">count</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">().</span><span class="na">getField</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+    <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(</span><span class="n">key</span><span class="o">,</span> <span class="n">window</span><span class="o">.</span><span class="na">getEnd</span><span class="o">(),</span><span class="n">count</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">SensorReading</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+ <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+ <span class="o">.</span><span class="n">timeWindow</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+ <span class="o">.</span><span class="n">fold</span> <span class="o">(</span>
+    <span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="mi">0L</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span><span class="o">,</span> <span class="kt">Long</span><span class="o">,</span> <span class="nc">Int</span><span class="o">),</span> <span class="n">r</span><span class="k">:</span> <span class="kt">SensorReading</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span> <span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">,</span> <span class="mi">0L</span><span class="o">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">_3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">},</span>
+    <span class="o">(</span> <span class="n">key</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
+      <span class="n">window</span><span class="k">:</span> <span class="kt">TimeWindow</span><span class="o">,</span>
+      <span class="n">counts</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span>, <span class="kt">Int</span><span class="o">)],</span>
+      <span class="n">out</span><span class="k">:</span> <span class="kt">Collector</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Long</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="o">)</span> <span class="k">=&gt;</span>
+      <span class="o">{</span>
+        <span class="k">val</span> <span class="n">count</span> <span class="k">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="o">()</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">collect</span><span class="o">((</span><span class="n">key</span><span class="o">,</span> <span class="n">window</span><span class="o">.</span><span class="n">getEnd</span><span class="o">,</span> <span class="n">count</span><span class="o">.</span><span class="n">_3</span><span class="o">))</span>
+      <span class="o">}</span>
+  <span class="o">)</span></code></pre></div>
+
+  </div>
+</div>
+
+<h4 id="incremental-window-aggregation-with-reducefunction">Incremental Window Aggregation with ReduceFunction</h4>
+
+<p>The following example shows how an incremental <code>ReduceFunction</code> can be combined with
+a <code>WindowFunction</code> to return the smallest event in a window along
+with the start time of the window.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+  <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="na">timeWindow</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="k">new</span> <span class="nf">MyReduceFunction</span><span class="o">(),</span> <span class="k">new</span> <span class="nf">MyWindowFunction</span><span class="o">());</span>
+
+<span class="c1">// Function definitions</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MyReduceFunction</span> <span class="kd">implements</span> <span class="n">ReduceFunction</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">SensorReading</span> <span class="nf">reduce</span><span class="o">(</span><span class="n">SensorReading</span> <span class="n">r1</span><span class="o">,</span> <span class="n">SensorReading</span> <span class="n">r2</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">r1</span><span class="o">.</span><span class="na">value</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">r2</span><span class="o">.</span><span class="na">value</span><span class="o">()</span> <span class="o">?</span> <span class="n">r2</span> <span class="o">:</span> <span class="n">r1</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MyWindowFunction</span>
+    <span class="kd">implements</span> <span class="n">WindowFunction</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">SensorReading</span><span class="o">&gt;,</span> <span class="n">String</span><span class="o">,</span> <span class="n">TimeWindow</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span>
+                    <span class="n">TimeWindow</span> <span class="n">window</span><span class="o">,</span>
+                    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">SensorReading</span><span class="o">&gt;</span> <span class="n">minReadings</span><span class="o">,</span>
+                    <span class="n">Collector</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">SensorReading</span><span class="o">&gt;&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">SensorReading</span> <span class="n">min</span> <span class="o">=</span> <span class="n">minReadings</span><span class="o">.</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">();</span>
+      <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">SensorReading</span><span class="o">&gt;(</span><span class="n">window</span><span class="o">.</span><span class="na">getStart</span><span class="o">(),</span> <span class="n">min</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+  </div>
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">SensorReading</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+  <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="n">timeWindow</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+  <span class="o">.</span><span class="n">reduce</span><span class="o">(</span>
+    <span class="o">(</span><span class="n">r1</span><span class="k">:</span> <span class="kt">SensorReading</span><span class="o">,</span> <span class="n">r2</span><span class="k">:</span> <span class="kt">SensorReading</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span> <span class="k">if</span> <span class="o">(</span><span class="n">r1</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">r2</span><span class="o">.</span><span class="n">value</span><span class="o">)</span> <span class="n">r2</span> <span class="k">else</span> <span class="n">r1</span> <span class="o">},</span>
+    <span class="o">(</span> <span class="n">key</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span>
+      <span class="n">window</span><span class="k">:</span> <span class="kt">TimeWindow</span><span class="o">,</span>
+      <span class="n">minReadings</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">SensorReading</span><span class="o">],</span>
+      <span class="n">out</span><span class="k">:</span> <span class="kt">Collector</span><span class="o">[(</span><span class="kt">Long</span>, <span class="kt">SensorReading</span><span class="o">)]</span> <span class="o">)</span> <span class="k">=&gt;</span>
+      <span class="o">{</span>
+        <span class="k">val</span> <span class="n">min</span> <span class="k">=</span> <span class="n">minReadings</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="o">()</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">collect</span><span class="o">((</span><span class="n">window</span><span class="o">.</span><span class="n">getStart</span><span class="o">,</span> <span class="n">min</span><span class="o">))</span>
+      <span class="o">}</span>
+  <span class="o">)</span></code></pre></div>
+
+  </div>
+</div>
+
+<h2 id="triggers">Triggers</h2>
+
+<p>A <code>Trigger</code> determines when a window (as formed by the <em>window assigner</em>) is ready to be
+processed by the <em>window function</em>. Each <code>WindowAssigner</code> comes with a default <code>Trigger</code>.
+If the default trigger does not fit your needs, you can specify a custom trigger using <code>trigger(...)</code>.</p>
+
+<p>The trigger interface has five methods that allow a <code>Trigger</code> to react to different events:</p>
+
+<ul>
+  <li>The <code>onElement()</code> method is called for each element that is added to a window.</li>
+  <li>The <code>onEventTime()</code> method is called when  a registered event-time timer fires.</li>
+  <li>The <code>onProcessingTime()</code> method is called when a registered processing-time timer fires.</li>
+  <li>The <code>onMerge()</code> method is relevant for stateful triggers and merges the states of two triggers when their corresponding windows merge, <em>e.g.</em> when using session windows.</li>
+  <li>Finally the <code>clear()</code> method performs any action needed upon removal of the corresponding window.</li>
+</ul>
+
+<p>Two things to notice about the above methods are:</p>
+
+<p>1) The first three decide how to act on their invocation event by returning a <code>TriggerResult</code>. The action can be one of the following:</p>
+
+<ul>
+  <li><code>CONTINUE</code>: do nothing,</li>
+  <li><code>FIRE</code>: trigger the computation,</li>
+  <li><code>PURGE</code>: clear the elements in the window, and</li>
+  <li><code>FIRE_AND_PURGE</code>: trigger the computation and clear the elements in the window afterwards.</li>
+</ul>
+
+<p>2) Any of these methods can be used to register processing- or event-time timers for future actions.</p>
+
+<h3 id="fire-and-purge">Fire and Purge</h3>
+
+<p>Once a trigger determines that a window is ready for processing, it fires, <em>i.e.</em>, it returns <code>FIRE</code> or <code>FIRE_AND_PURGE</code>. This is the signal for the window operator
+to emit the result of the current window. Given a window with a <code>WindowFunction</code>
+all elements are passed to the <code>WindowFunction</code> (possibly after passing them to an evictor).
+Windows with <code>ReduceFunction</code> of <code>FoldFunction</code> simply emit their eagerly aggregated result.</p>
+
+<p>When a trigger fires, it can either <code>FIRE</code> or <code>FIRE_AND_PURGE</code>. While <code>FIRE</code> keeps the contents of the window, <code>FIRE_AND_PURGE</code> removes its content.
+By default, the pre-implemented triggers simply <code>FIRE</code> without purging the window state.</p>
+
+<p><span class="label label-danger">Attention</span> Purging will simply remove the contents of the window and will leave any potential meta-information about the window and any trigger state intact.</p>
+
+<h3 id="default-triggers-of-windowassigners">Default Triggers of WindowAssigners</h3>
+
+<p>The default <code>Trigger</code> of a <code>WindowAssigner</code> is appropriate for many use cases. For example, all the event-time window assigners have an <code>EventTimeTrigger</code> as
+default trigger. This trigger simply fires once the watermark passes the end of a window.</p>
+
+<p><span class="label label-danger">Attention</span> The default trigger of the <code>GlobalWindow</code> is the <code>NeverTrigger</code> which does never fire. Consequently, you always have to define a custom trigger when using a <code>GlobalWindow</code>.</p>
+
+<p><span class="label label-danger">Attention</span> By specifying a trigger using <code>trigger()</code> you
+are overwriting the default trigger of a <code>WindowAssigner</code>. For example, if you specify a
+<code>CountTrigger</code> for <code>TumblingEventTimeWindows</code> you will no longer get window firings based on the
+progress of time but only by count. Right now, you have to write your own custom trigger if
+you want to react based on both time and count.</p>
+
+<h3 id="built-in-and-custom-triggers">Built-in and Custom Triggers</h3>
+
+<p>Flink comes with a few built-in triggers.</p>
+
+<ul>
+  <li>The (already mentioned) <code>EventTimeTrigger</code> fires based on the progress of event-time as measured by watermarks.</li>
+  <li>The <code>ProcessingTimeTrigger</code> fires based on processing time.</li>
+  <li>The <code>CountTrigger</code> fires once the number of elements in a window exceeds the given limit.</li>
+  <li>The <code>PurgingTrigger</code> takes as argument another trigger and transforms it into a purging one.</li>
+</ul>
+
+<p>If you need to implement a custom trigger, you should check out the abstract
+<a href="https://github.com/apache/flink/blob/master//flink-streaming-java/src/main/java/org/apache/flink/streaming/api/windowing/triggers/Trigger.java">Trigger</a> class.
+Please note that the API is still evolving and might change in future versions of Flink.</p>
+
+<h2 id="evictors">Evictors</h2>
+
+<p>Flink’s windowing model allows specifying an optional <code>Evictor</code> in addition to the <code>WindowAssigner</code> and the <code>Trigger</code>.
+This can be done using the <code>evictor(...)</code> method (shown in the beginning of this document). The evictor has the ability
+to remove elements from a window <em>after</em> the trigger fires and <em>before and/or after</em> the window function is applied.
+To do so, the <code>Evictor</code> interface has two methods:</p>
+
+<div class="highlight"><pre><code>/**
+ * Optionally evicts elements. Called before windowing function.
+ *
+ * @param elements The elements currently in the pane.
+ * @param size The current number of elements in the pane.
+ * @param window The {@link Window}
+ * @param evictorContext The context for the Evictor
+ */
+void evictBefore(Iterable&lt;TimestampedValue&lt;T&gt;&gt; elements, int size, W window, EvictorContext evictorContext);
+
+/**
+ * Optionally evicts elements. Called after windowing function.
+ *
+ * @param elements The elements currently in the pane.
+ * @param size The current number of elements in the pane.
+ * @param window The {@link Window}
+ * @param evictorContext The context for the Evictor
+ */
+void evictAfter(Iterable&lt;TimestampedValue&lt;T&gt;&gt; elements, int size, W window, EvictorContext evictorContext);
+</code></pre></div>
+
+<p>The <code>evictBefore()</code> contains the eviction logic to be applied before the window function, while the <code>evictAfter()</code>
+contains the one to be applied after the window function. Elements evicted before the application of the window
+function will not be processed by it.</p>
+
+<p>Flink comes with three pre-implemented evictors. These are:</p>
+
+<ul>
+  <li><code>CountEvictor</code>: keeps up to a user-specified number of elements from the window and discards the remaining ones from
+the beginning of the window buffer.</li>
+  <li><code>DeltaEvictor</code>: takes a <code>DeltaFunction</code> and a <code>threshold</code>, computes the delta between the last element in the
+window buffer and each of the remaining ones, and removes the ones with a delta greater or equal to the threshold.</li>
+  <li><code>TimeEvictor</code>: takes as argument an <code>interval</code> in milliseconds and for a given window, it finds the maximum
+timestamp <code>max_ts</code> among its elements and removes all the elements with timestamps smaller than <code>max_ts - interval</code>.</li>
+</ul>
+
+<p><span class="label label-info">Default</span> By default, all the pre-implemented evictors apply their logic before the
+window function.</p>
+
+<p><span class="label label-danger">Attention</span> Specifying an evictor prevents any pre-aggregation, as all the
+elements of a window have to be passed to the evictor before applying the computation.</p>
+
+<p><span class="label label-danger">Attention</span> Flink provides no guarantees about the order of the elements within
+a window. This implies that although an evictor may remove elements from the beginning of the window, these are not
+necessarily the ones that arrive first or last.</p>
+
+<h2 id="allowed-lateness">Allowed Lateness</h2>
+
+<p>When working with <em>event-time</em> windowing, it can happen that elements arrive late, <em>i.e.</em> the watermark that Flink uses to
+keep track of the progress of event-time is already past the end timestamp of a window to which an element belongs. See
+<a href="/dev/event_time.html">event time</a> and especially <a href="/dev/event_time.html#late-elements">late elements</a> for a more thorough
+discussion of how Flink deals with event time.</p>
+
+<p>By default, late elements are dropped when the watermark is past the end of the window. However,
+Flink allows to specify a maximum <em>allowed lateness</em> for window operators. Allowed lateness
+specifies by how much time elements can be late before they are dropped, and its default value is 0.
+Elements that arrive after the watermark has passed the end of the window but before it passes the end of
+the window plus the allowed lateness, are still added to the window. Depending on the trigger used,
+a late but not dropped element may cause the window to fire again. This is the case for the <code>EventTimeTrigger</code>.</p>
+
+<p>In order to make this work, Flink keeps the state of windows until their allowed lateness expires. Once this happens, Flink removes the window and deletes its state, as
+also described in the <a href="#window-lifecycle">Window Lifecycle</a> section.</p>
+
+<p><span class="label label-info">Default</span> By default, the allowed lateness is set to
+<code>0</code>. That is, elements that arrive behind the watermark will be dropped.</p>
+
+<p>You can specify an allowed lateness like this:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">allowedLateness</span><span class="o">(&lt;</span><span class="n">time</span><span class="o">&gt;)</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">allowedLateness</span><span class="o">(&lt;</span><span class="n">time</span><span class="o">&gt;)</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span></code></pre></div>
+
+  </div>
+</div>
+
+<p><span class="label label-info">Note</span> When using the <code>GlobalWindows</code> window assigner no
+data is ever considered late because the end timestamp of the global window is <code>Long.MAX_VALUE</code>.</p>
+
+<h3 id="getting-late-data-as-a-side-output">Getting late data as a side output</h3>
+
+<p>Using Flink’s <a href="/dev/stream/side_output.html">side output</a> feature you can get a stream of the data
+that was discarded as late.</p>
+
+<p>You first need to specify that you want to get late data using <code>sideOutputLateData(OutputTag)</code> on
+the windowed stream. Then, you can get the side-output stream on the result of the windowed
+operation:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">OutputTag</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">lateOutputTag</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputTag</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="s">&quot;late-data&quot;</span><span class="o">){};</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">input</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">allowedLateness</span><span class="o">(&lt;</span><span class="n">time</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="na">sideOutputLateData</span><span class="o">(</span><span class="n">lateOutputTag</span><span class="o">)</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;);</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">lateStream</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getSideOutput</span><span class="o">(</span><span class="n">lateOutputTag</span><span class="o">);</span></code></pre></div>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">lateOutputTag</span> <span class="k">=</span> <span class="nc">OutputTag</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="s">&quot;late-data&quot;</span><span class="o">)</span>
+
+<span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">input</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(&lt;</span><span class="n">key</span> <span class="n">selector</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">window</span><span class="o">(&lt;</span><span class="n">window</span> <span class="n">assigner</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">allowedLateness</span><span class="o">(&lt;</span><span class="n">time</span><span class="o">&gt;)</span>
+    <span class="o">.</span><span class="n">sideOutputLateData</span><span class="o">(</span><span class="n">lateOutputTag</span><span class="o">)</span>
+    <span class="o">.&lt;</span><span class="n">windowed</span> <span class="n">transformation</span><span class="o">&gt;(&lt;</span><span class="n">window</span> <span class="n">function</span><span class="o">&gt;)</span>
+
+<span class="k">val</span> <span class="n">lateStream</span> <span class="k">=</span> <span class="n">result</span><span class="o">.</span><span class="n">getSideOutput</span><span class="o">(</span><span class="n">lateOutputTag</span><span class="o">)</span></code></pre></div>
+
+  </div>
+</div>
+
+<h3 id="late-elements-considerations">Late elements considerations</h3>
+
+<p>When specifying an allowed lateness greater than 0, the window along with its content is kept after the watermark passes
+the end of the window. In these cases, when a late but not dropped element arrives, it could trigger another firing for the
+window. These firings are called <code>late firings</code>, as they are triggered by late events and in contrast to the <code>main firing</code>
+which is the first firing of the window. In case of session windows, late firings can further lead to merging of windows,
+as they may “bridge” the gap between two pre-existing, unmerged windows.</p>
+
+<p><span class="label label-info">Attention</span> You should be aware that the elements emitted by a late firing should be treated as updated results of a previous computation, i.e., your data stream will contain multiple results for the same computation. Depending on your application, you need to take these duplicated results into account or deduplicate them.</p>
+
+<h2 id="useful-state-size-considerations">Useful state size considerations</h2>
+
+<p>Windows can be defined over long periods of time (such as days, weeks, or months) and therefore accumulate very large state. There are a couple of rules to keep in mind when estimating the storage requirements of your windowing computation:</p>
+
+<ol>
+  <li>
+    <p>Flink creates one copy of each element per window to which it belongs. Given this, tumbling windows keep one copy of each element (an element belongs to exactly window unless it is dropped late). In contrast, sliding windows create several of each element, as explained in the <a href="#window-assigners">Window Assigners</a> section. Hence, a sliding window of size 1 day and slide 1 second might not be a good idea.</p>
+  </li>
+  <li>
+    <p><code>FoldFunction</code> and <code>ReduceFunction</code> can significantly reduce the storage requirements, as they eagerly aggregate elements and store only one value per window. In contrast, just using a <code>WindowFunction</code> requires accumulating all elements.</p>
+  </li>
+  <li>
+    <p>Using an <code>Evictor</code> prevents any pre-aggregation, as all the elements of a window have to be passed through the evictor before applying the computation (see <a href="#evictors">Evictors</a>).</p>
+  </li>
+</ol>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>
