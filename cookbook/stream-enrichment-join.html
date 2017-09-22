@@ -24,7 +24,7 @@ under the License.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Apache Flink 1.4-SNAPSHOT Documentation: Checkpoints</title>
+    <title>Apache Flink 1.4-SNAPSHOT Documentation: Stream Enrichment Join</title>
     <link rel="shortcut icon" href="//ci.apache.org/projects/flink/flink-docs-release-1.4/page/favicon.ico" type="image/x-icon">
     <link rel="icon" href="//ci.apache.org/projects/flink/flink-docs-release-1.4/page/favicon.ico" type="image/x-icon">
 
@@ -57,14 +57,6 @@ under the License.
 
 
 
-
-  
-    
-    
-    
-      
-    
-  
 
   
     
@@ -317,7 +309,7 @@ under the License.
       
         
         
-<li><a href="#collapse-11" data-toggle="collapse"><i class="fa fa-book title appetizer" aria-hidden="true"></i> Cookbook <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-11"><ul>
+<li><a href="#collapse-11" data-toggle="collapse" class="active"><i class="fa fa-book title appetizer" aria-hidden="true"></i> Cookbook</a><div class="collapse in" id="collapse-11"><ul>
   <li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/cookbook/index.html">Overview</a></li>
         
         
@@ -346,7 +338,7 @@ under the License.
     
       
       
-<li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/cookbook/stream-enrichment-join.html">Stream Enrichment Join</a></li>
+<li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/cookbook/stream-enrichment-join.html" class="active">Stream Enrichment Join</a></li>
       
     
   
@@ -2448,7 +2440,7 @@ under the License.
       
         
         
-<li><a href="#collapse-120" data-toggle="collapse" class="active"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</a><div class="collapse in" id="collapse-120"><ul>
+<li><a href="#collapse-120" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-120"><ul>
   
         
         
@@ -2691,7 +2683,7 @@ under the License.
       
         
         
-<li><a href="#collapse-132" data-toggle="collapse" class="active">State & Fault Tolerance</a><div class="collapse in" id="collapse-132"><ul>
+<li><a href="#collapse-132" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-132"><ul>
   
         
         
@@ -2718,7 +2710,7 @@ under the License.
 
     
     
-<li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/ops/state/checkpoints.html" class="active">Checkpoints</a></li>
+<li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/ops/state/checkpoints.html">Checkpoints</a></li>
     
   
 
@@ -3322,14 +3314,6 @@ under the License.
     
     
       
-    
-  
-
-  
-  
-    
-    
-      
 
 
 
@@ -3337,107 +3321,140 @@ under the License.
 
   
   
-    <li><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</li>
+    <li><a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/cookbook/index.html"><i class="fa fa-book title appetizer" aria-hidden="true"></i> Cookbook</a></li>
   
 
   
   
-    <li>State & Fault Tolerance</li>
-  
-
-  
-  
-    <li class="active">Checkpoints</li>
+    <li class="active">Stream Enrichment Join</li>
   
 
 </ol>
 
-<h1>Checkpoints</h1>
+<h1>Stream Enrichment Join</h1>
 
 
 
 
 <ul id="markdown-toc">
-  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
-  <li><a href="#externalized-checkpoints" id="markdown-toc-externalized-checkpoints">Externalized Checkpoints</a>    <ul>
-      <li><a href="#directory-structure" id="markdown-toc-directory-structure">Directory Structure</a></li>
-      <li><a href="#difference-to-savepoints" id="markdown-toc-difference-to-savepoints">Difference to Savepoints</a></li>
-      <li><a href="#resuming-from-an-externalized-checkpoint" id="markdown-toc-resuming-from-an-externalized-checkpoint">Resuming from an externalized checkpoint</a></li>
+  <li><a href="#problem" id="markdown-toc-problem">Problem</a></li>
+  <li><a href="#definition-and-requirements" id="markdown-toc-definition-and-requirements">Definition and requirements</a></li>
+  <li><a href="#stream-definition" id="markdown-toc-stream-definition">Stream definition</a></li>
+  <li><a href="#implementation" id="markdown-toc-implementation">Implementation</a>    <ul>
+      <li><a href="#connect-streams" id="markdown-toc-connect-streams">1. Connect streams</a></li>
+      <li><a href="#join-streams" id="markdown-toc-join-streams">2. Join streams</a></li>
     </ul>
   </li>
+  <li><a href="#limitations-and-extensions" id="markdown-toc-limitations-and-extensions">Limitations and extensions</a></li>
 </ul>
 
-<h2 id="overview">Overview</h2>
+<h2 id="problem">Problem</h2>
 
-<p>Checkpoints make state in Flink fault tolerant by allowing state and the
-corresponding stream positions to be recovered, thereby giving the application
-the same semantics as a failure-free execution.</p>
+<p>Data may arrive from different sources in multiple streams. To add context to this data before processing it, it might be necessary to enrich one stream with data flowing in another stream. This is stream enrichment and can be done by joining these two streams.</p>
 
-<p>See <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/dev/stream/state/checkpointing.html">Checkpointing</a> for how to enable and
-configure checkpoints for your program.</p>
+<p>One stream provides reference data at low-frequency updates. We keep the most recent version in the state.</p>
 
-<h2 id="externalized-checkpoints">Externalized Checkpoints</h2>
+<p>The second stream provides data which need to be enriched at a high-frequency rate. When data flows in the stream, we look up the state to get the related data provided by the first stream and enrich them. This technique makes it possible to execute a lookup at very low latency in the state instead of a slow lookup in an external source like a database.</p>
 
-<p>Checkpoints are by default not persisted externally and are only used to
-resume a job from failures. They are deleted when a program is cancelled.
-You can, however, configure periodic checkpoints to be persisted externally
-similarly to <a href="savepoints.html">savepoints</a>. These <em>externalized checkpoints</em>
-write their meta data out to persistent storage and are <em>not</em> automatically
-cleaned up when the job fails. This way, you will have a checkpoint around
-to resume from if your job fails.</p>
+<p>Terminology:
+  - [RDS]: Reference Data Stream provides updates at low frequency
+  - [LDS]: Light Data Stream provides data requiring enrichment
+  - [EDS]: Enriched Data Stream provides enriched data result of the join operation</p>
 
-<div class="highlight"><pre><code class="language-java"><span class="n">CheckpointConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">getCheckpointConfig</span><span class="o">();</span>
-<span class="n">config</span><span class="o">.</span><span class="na">enableExternalizedCheckpoints</span><span class="o">(</span><span class="n">ExternalizedCheckpointCleanup</span><span class="o">.</span><span class="na">RETAIN_ON_CANCELLATION</span><span class="o">);</span></code></pre></div>
+<h2 id="definition-and-requirements">Definition and requirements</h2>
 
-<p>The <code>ExternalizedCheckpointCleanup</code> mode configures what happens with externalized checkpoints when you cancel the job:</p>
+<p>RDS and LDS must be joined on a key.</p>
+
+<p>Data provided by RDS are stored in a ValueState, a distributed Hash Table scoped by key. It will be updated as data flows in RDS.</p>
+
+<p>Data provided by LDS are enriched with values from the state. It contains the most recent version of the data flowing in RDS based on the processing time.</p>
+
+<p>Data provided by LDS which do not have a matching key in the state are dropped.</p>
+
+<h2 id="stream-definition">Stream definition</h2>
 
 <ul>
-  <li>
-    <p><strong><code>ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION</code></strong>: Retain the externalized checkpoint when the job is cancelled. Note that you have to manually clean up the checkpoint state after cancellation in this case.</p>
-  </li>
-  <li>
-    <p><strong><code>ExternalizedCheckpointCleanup.DELETE_ON_CANCELLATION</code></strong>: Delete the externalized checkpoint when the job is cancelled. The checkpoint state will only be available if the job fails.</p>
-  </li>
+  <li>RDS: Tuple2&lt;Integer, String&gt;</li>
+  <li>LDS: Tuple2&lt;Integer, String&gt;</li>
+  <li>EDS: Tuple3&lt;Integer, String, String&gt;</li>
 </ul>
 
-<h3 id="directory-structure">Directory Structure</h3>
+<p>The first element of each tuple is an Integer which is used as a key to join the streams.</p>
 
-<p>Similarly to <a href="savepoints.html">savepoints</a>, an externalized checkpoint consists
-of a meta data file and, depending on the state back-end, some additional data
-files. The <strong>target directory</strong> for the externalized checkpoint’s meta data is
-determined from the configuration key <code>state.checkpoints.dir</code> which, currently,
-can only be set via the configuration files.</p>
+<h2 id="implementation">Implementation</h2>
 
-<div class="highlight"><pre><code>state.checkpoints.dir: hdfs:///checkpoints/
-</code></pre></div>
+<h3 id="connect-streams">1. Connect streams</h3>
 
-<p>This directory will then contain the checkpoint meta data required to restore
-the checkpoint. For the <code>MemoryStateBackend</code>, this meta data file will be
-self-contained and no further files are needed.</p>
+<p>We need to connect streams before joining them. Two streams are connected via a common key, the Integer in the first position of the Tuple.</p>
 
-<p><code>FsStateBackend</code> and <code>RocksDBStateBackend</code> write separate data files
-and only write the paths to these files into the meta data file. These data
-files are stored at the path given to the state back-end during construction.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">EnrichedData</span><span class="o">&gt;</span> <span class="n">joinedStream</span> <span class="o">=</span> <span class="n">lightDataStream</span>                                            
+                                            <span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">referenceDataStream</span><span class="o">)</span>     
+                                            <span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-java"><span class="n">env</span><span class="o">.</span><span class="na">setStateBackend</span><span class="o">(</span><span class="k">new</span> <span class="nf">RocksDBStateBackend</span><span class="o">(</span><span class="s">&quot;hdfs:///checkpoints-data/&quot;</span><span class="o">);</span></code></pre></div>
+<h3 id="join-streams">2. Join streams</h3>
 
-<h3 id="difference-to-savepoints">Difference to Savepoints</h3>
+<p>We want to enrich data flowing in LightDataStream with data flowing in ReferenceDataStream. Therefore, we must capture ReferenceData changes in the state which will later be used to enrich LightData.</p>
 
-<p>Externalized checkpoints have a few differences from <a href="savepoints.html">savepoints</a>. They
-- use a state backend specific (low-level) data format,
-- may be incremental,
-- do not support Flink specific features like rescaling.</p>
+<p>We apply a <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/dev/datastream_api.html#datastream-transformations">flatMap</a> operator using a <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/api/java/org/apache/flink/streaming/api/functions/co/RichCoFlatMapFunction.html">RichCoFlatMapFunction</a> on the connected streams.</p>
 
-<h3 id="resuming-from-an-externalized-checkpoint">Resuming from an externalized checkpoint</h3>
+<h4 id="create-a-new-richcoflatmapfunction">2.1 Create a new RichCoFlatMapFunction</h4>
 
-<p>A job may be resumed from an externalized checkpoint just as from a savepoint
-by using the checkpoint’s meta data file instead (see the
-<a href="../cli.html#restore-a-savepoint">savepoint restore guide</a>). Note that if the
-meta data file is not self-contained, the jobmanager needs to have access to
-the data files it refers to (see <a href="#directory-structure">Directory Structure</a>
-above).</p>
+<p>Let’s create a new function extending RichCoFlatMapFunction. We must specific three type parameters:</p>
 
-<div class="highlight"><pre><code class="language-sh"><span class="nv">$ </span>bin/flink run -s :checkpointMetaDataPath <span class="o">[</span>:runArgs<span class="o">]</span></code></pre></div>
+<ol>
+  <li>the data type flowing in the first stream: LightData</li>
+  <li>the data type flowing in the second stream: ReferenceData</li>
+  <li>the data type which will be collected by the collector and pushed downstream: EnrichedData</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">StreamJoinFunction</span> <span class="kd">extends</span> <span class="n">RichCoFlatMapFunction</span><span class="o">&lt;</span><span class="n">LightData</span><span class="o">,</span> <span class="n">ReferenceData</span><span class="o">,</span> <span class="n">EnrichedData</span><span class="o">&gt;</span></code></pre></div>
+
+<h4 id="define-the-state">2.2 Define the state</h4>
+
+<p>We save ReferenceData values in a ValueState. The state is scoped by the key. When calling <code>state.value()</code> or <code>state.update()</code> we interact with the value associated with the key of the processed element.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">ValueState</span><span class="o">&lt;</span><span class="n">ReferenceData</span><span class="o">&gt;</span> <span class="n">referenceDataState</span><span class="o">;</span></code></pre></div>
+
+<p>The state must be defined in the method <strong>open</strong> which we override.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">parameters</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">referenceDataState</span> <span class="o">=</span> <span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">getState</span><span class="o">(</span><span class="k">new</span> <span class="n">ValueStateDescriptor</span><span class="o">&lt;</span><span class="n">ReferenceData</span><span class="o">&gt;(</span>
+                    <span class="s">&quot;referenceData&quot;</span><span class="o">,</span> <span class="n">ReferenceData</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+<span class="o">}</span></code></pre></div>
+
+<h4 id="process-elements-from-both-streams">2.3 Process elements from both streams</h4>
+
+<p>Two more methods must be overridden: <strong>flatMap1</strong> and <strong>flatMap2</strong>.</p>
+
+<p><strong>flatMap2</strong> is executed when new elements flow in RDS. We only update ReferenceData value in the state.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">flatMap2</span><span class="o">(</span><span class="n">ReferenceData</span> <span class="n">referenceData</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">EnrichedData</span><span class="o">&gt;</span> <span class="n">collector</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">referenceDataState</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">referenceData</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+
+<p><strong>flapMap1</strong> is executed when new elements flow in the LDS. For each flowing LightData we read the corresponding ReferenceData value from the state and create a new EnrichedData that we push downstream via the collector.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">flatMap1</span><span class="o">(</span><span class="n">LightData</span> <span class="n">lightData</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">EnrichedData</span><span class="o">&gt;</span> <span class="n">collector</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">ReferenceData</span> <span class="n">referenceData</span> <span class="o">=</span> <span class="n">referenceDataState</span><span class="o">.</span><span class="na">value</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">referenceData</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">EnrichedData</span> <span class="n">enrichedData</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">EnrichedData</span><span class="o">(</span><span class="n">lightData</span><span class="o">,</span> <span class="n">referenceData</span><span class="o">);</span>
+        <span class="n">collector</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">enrichedData</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>That’s it! The flatMap operator returns a stream of EnrichedData. You can apply other operators of the <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/dev/datastream_api.html">DataStreamApi</a>.</p>
+
+<h2 id="limitations-and-extensions">Limitations and extensions</h2>
+
+<p>We are dropping elements flowing in LDS if we have never received any related data in RDS. It is possible to go around this limitation by saving these elements in a ListState and process them later when the corresponding element is provided by RDS.</p>
+
+<p>We never clean the state so its size will grow proportionally to the number of keys provided by RDS.</p>
+
+<p>In both case, it might be necessary to clean the state by using timers called when the value is not necessary anymore. To set timers, use <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/api/java/org/apache/flink/streaming/api/functions/co/CoProcessFunction.html">CoProcessFunction</a> instead of <a href="//ci.apache.org/projects/flink/flink-docs-release-1.4/api/java/org/apache/flink/streaming/api/functions/co/RichCoFlatMapFunction.html">RichCoFlatMapFunction</a>.</p>
 
 
         </div>
