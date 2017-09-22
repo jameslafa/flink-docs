@@ -3356,10 +3356,13 @@ under the License.
 
 <p>The second stream provides data which need to be enriched at a high-frequency rate. When data flows in the stream, we look up the state to get the related data provided by the first stream and enrich them. This technique makes it possible to execute a lookup at very low latency in the state instead of a slow lookup in an external source like a database.</p>
 
-<p>Terminology:
-  - [RDS]: Reference Data Stream provides updates at low frequency
-  - [LDS]: Light Data Stream provides data requiring enrichment
-  - [EDS]: Enriched Data Stream provides enriched data result of the join operation</p>
+<p>Terminology:</p>
+
+<ul>
+  <li><strong>RDS</strong>: Reference Data Stream provides updates at low frequency</li>
+  <li><strong>LDS</strong>: Light Data Stream provides data requiring enrichment</li>
+  <li><strong>EDS</strong>: Enriched Data Stream provides enriched data result of the join operation</li>
+</ul>
 
 <h2 id="definition-and-requirements">Definition and requirements</h2>
 
@@ -3374,9 +3377,9 @@ under the License.
 <h2 id="stream-definition">Stream definition</h2>
 
 <ul>
-  <li>RDS: Tuple2&lt;Integer, String&gt;</li>
-  <li>LDS: Tuple2&lt;Integer, String&gt;</li>
-  <li>EDS: Tuple3&lt;Integer, String, String&gt;</li>
+  <li><strong>RDS</strong>: Tuple2&lt;Integer, String&gt;</li>
+  <li><strong>LDS</strong>: Tuple2&lt;Integer, String&gt;</li>
+  <li><strong>EDS</strong>: Tuple3&lt;Integer, String, String&gt;</li>
 </ul>
 
 <p>The first element of each tuple is an Integer which is used as a key to join the streams.</p>
